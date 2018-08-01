@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetroMessageBoxLib", "MetroMessageBoxLib\MetroMessageBoxLib.csproj", "{BA88D9E1-3978-4092-AE72-9A82BAF65F15}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoProj", "DemoProj\DemoProj.csproj", "{7F7B8E94-9401-422E-8B2C-CD0B0975B794}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{BA88D9E1-3978-4092-AE72-9A82BAF65F15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA88D9E1-3978-4092-AE72-9A82BAF65F15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA88D9E1-3978-4092-AE72-9A82BAF65F15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F7B8E94-9401-422E-8B2C-CD0B0975B794}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F7B8E94-9401-422E-8B2C-CD0B0975B794}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F7B8E94-9401-422E-8B2C-CD0B0975B794}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F7B8E94-9401-422E-8B2C-CD0B0975B794}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

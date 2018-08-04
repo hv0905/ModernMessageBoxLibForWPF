@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" ShowInTaskbar="False"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" Closing="MetroMessageBox_OnClosing"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" x:Name="main"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" x:Name="main" KeyUp="MetroMessageBox_OnKeyUp"
         xmlns:local="clr-namespace:MetroMessageBoxLib" AllowsTransparency="True" WindowStyle="None"
         StateChanged="MetroMessageBox_OnStateChanged"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" Background="{x:Null}" Width="600" SizeToContent="Height"
@@ -49,7 +49,7 @@
             <BeginStoryboard Storyboard="{StaticResource OpenStory}" />
         </EventTrigger>
     </Window.Triggers>
-    <Grid x:Name="gridMain" RenderTransformOrigin="0.5,0.5">
+    <Grid RenderTransformOrigin="0.5,0.5">
         <Grid.Background>
             <SolidColorBrush Color="Black" Opacity="0.6" />
         </Grid.Background>
@@ -78,23 +78,24 @@
             </Grid.ColumnDefinitions>
             <DockPanel Grid.Row="2" Grid.ColumnSpan="2">
                 <Button x:Name="rbtn3" DockPanel.Dock="Right" Margin="5,2,5,2" Style="{StaticResource Win8UWPBtn}"
-                        Width="100" FontSize="16" Click="ResultButton_Click"
+                        MinWidth="100" FontSize="16" Click="ResultButton_Click"
                         Content="{Binding Button3Text, ElementName=main}"
                         Visibility="{Binding Button3Status, ElementName=main,Converter={StaticResource msgboxBtnsVisibilityConverter}}"
-                        IsEnabled="{Binding Button3Status, ElementName=main,Converter={StaticResource msgboxBtnsEnabledConverter}}" />
+                        IsEnabled="{Binding Button3Status, ElementName=main,Converter={StaticResource msgboxBtnsEnabledConverter}}"/>
                 <Button x:Name="rbtn2" DockPanel.Dock="Right" Margin="5,2,5,2"
-                        Style="{StaticResource Win8UWPBtn}" Width="100" FontSize="16" Click="ResultButton_Click"
-                        Content="{Binding Button2Text, ElementName=main}"
+                        Style="{StaticResource Win8UWPBtn}" FontSize="16" Click="ResultButton_Click"
+                        Content="{Binding Button2Text, ElementName=main}" MinWidth="100"
                         Visibility="{Binding Button2Status, ElementName=main,Converter={StaticResource msgboxBtnsVisibilityConverter}}"
                         IsEnabled="{Binding Button2Status, ElementName=main,Converter={StaticResource msgboxBtnsEnabledConverter}}"/>
                 <Button x:Name="rbtn1" DockPanel.Dock="Right" Margin="5,2,5,2"
-                        Style="{StaticResource Win8UWPBtn}" Width="100" FontSize="16" Click="ResultButton_Click"
-                        Content="{Binding Button1Text, ElementName=main}"
+                        Style="{StaticResource Win8UWPBtn}" FontSize="16" Click="ResultButton_Click"
+                        Content="{Binding Button1Text, ElementName=main}" MinWidth="100"
                         Visibility="{Binding Button1Status, ElementName=main,Converter={StaticResource msgboxBtnsVisibilityConverter}}"
                         IsEnabled="{Binding Button1Status, ElementName=main,Converter={StaticResource msgboxBtnsEnabledConverter}}"/>
-                <Rectangle />
+                <Rectangle/>
             </DockPanel>
-            <Image x:Name="img_headIcon" Grid.Row="0" Grid.Column="0" Source="{DynamicResource warning}" Width="60"
+            <CheckBox Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" Style="{StaticResource SwitchCheckbox}" Content="{Binding CheckboxText, ElementName=main}" Foreground="White" FontSize="16" Visibility="{Binding CheckboxVisibility, ElementName=main}" IsChecked="{Binding CheckboxChecked, ElementName=main}"/>
+            <Image x:Name="img_HeadIcon" Grid.Row="0" Grid.Column="0" Source="{DynamicResource warning}" Width="60"
                    HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" Visibility="Collapsed"/>
             <TextBlock Text="{Binding Message, ElementName=main}" HorizontalAlignment="Left"
                        TextWrapping="Wrap" Foreground="White" FontSize="16"

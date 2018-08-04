@@ -22,6 +22,10 @@ namespace MetroMessageBoxLib
         public static readonly DependencyProperty Button1TextProperty = DependencyProperty.Register("Button1Text",
             typeof(string), typeof(MetroMessageBox), new PropertyMetadata("Button1"));
 
+        /// <summary>
+        /// Button1的显示内容
+        /// The display content of Button1
+        /// </summary>
         public string Button1Text
         {
             get => (string)GetValue(Button1TextProperty);
@@ -32,6 +36,10 @@ namespace MetroMessageBoxLib
             typeof(MetroMessageboxButtonStatus), typeof(MetroMessageBox),
             new PropertyMetadata(MetroMessageboxButtonStatus.Normal));
 
+        /// <summary>
+        /// Button1的状态(IsEnabled和visibility)
+        /// The status of Button1(IsEnabled and Visibility)
+        /// </summary>
         public MetroMessageboxButtonStatus Button1Status
         {
             get => (MetroMessageboxButtonStatus)GetValue(Button1StatusProperty);
@@ -41,6 +49,10 @@ namespace MetroMessageBoxLib
         public static readonly DependencyProperty Button2TextProperty = DependencyProperty.Register("Button2Text",
             typeof(string), typeof(MetroMessageBox), new PropertyMetadata("Button2"));
 
+        /// <summary>
+        /// Button2的显示内容
+        /// The display content of Button2
+        /// </summary>
         public string Button2Text
         {
             get => (string)GetValue(Button2TextProperty);
@@ -51,6 +63,10 @@ namespace MetroMessageBoxLib
             typeof(MetroMessageboxButtonStatus), typeof(MetroMessageBox),
             new PropertyMetadata(MetroMessageboxButtonStatus.Invisibled));
 
+        /// <summary>
+        /// Button2的状态(IsEnabled和visibility)
+        /// The status of Button2(IsEnabled and Visibility)
+        /// </summary>
         public MetroMessageboxButtonStatus Button2Status
         {
             get => (MetroMessageboxButtonStatus)GetValue(Button2StatusProperty);
@@ -60,6 +76,10 @@ namespace MetroMessageBoxLib
         public static readonly DependencyProperty Button3TextProperty = DependencyProperty.Register("Button3Text",
             typeof(string), typeof(MetroMessageBox), new PropertyMetadata("Button3"));
 
+        /// <summary>
+        /// Button3的显示内容
+        /// The display content of Button3
+        /// </summary>
         public string Button3Text
         {
             get => (string)GetValue(Button3TextProperty);
@@ -70,6 +90,10 @@ namespace MetroMessageBoxLib
             typeof(MetroMessageboxButtonStatus), typeof(MetroMessageBox),
             new PropertyMetadata(MetroMessageboxButtonStatus.Invisibled));
 
+        /// <summary>
+        /// Button3的状态(IsEnabled和visibility)
+        /// The status of Button3(IsEnabled and Visibility)
+        /// </summary>
         public MetroMessageboxButtonStatus Button3Status
         {
             get => (MetroMessageboxButtonStatus)GetValue(Button3StatusProperty);
@@ -79,6 +103,10 @@ namespace MetroMessageBoxLib
         public static readonly DependencyProperty MessageProperty = DependencyProperty.Register("Message",
             typeof(string), typeof(MetroMessageBox), new PropertyMetadata(string.Empty));
 
+        /// <summary>
+        /// 显示在MessageBox的信息
+        /// The message to display in the messagebox
+        /// </summary>
         public string Message
         {
             get => (string)GetValue(MessageProperty);
@@ -92,28 +120,28 @@ namespace MetroMessageBoxLib
                     var newVal = (MetroMessageboxIcons)e.NewValue;
                     if ((MetroMessageboxIcons)e.OldValue == MetroMessageboxIcons.None &&
                         newVal != MetroMessageboxIcons.None) {
-                        current.img_headIcon.Visibility = Visibility.Visible;
+                        current.img_HeadIcon.Visibility = Visibility.Visible;
                         current.iconPlace.Width = new GridLength(70);
                     }
 
                     switch (newVal) {
                         case MetroMessageboxIcons.Info:
-                            current.img_headIcon.Source = current.Resources["info"] as BitmapImage;
+                            current.img_HeadIcon.Source = current.Resources["info"] as BitmapImage;
                             break;
                         case MetroMessageboxIcons.Question:
-                            current.img_headIcon.Source = current.Resources["question"] as BitmapImage;
+                            current.img_HeadIcon.Source = current.Resources["question"] as BitmapImage;
                             break;
                         case MetroMessageboxIcons.Warning:
-                            current.img_headIcon.Source = current.Resources["warning"] as BitmapImage;
+                            current.img_HeadIcon.Source = current.Resources["warning"] as BitmapImage;
                             break;
                         case MetroMessageboxIcons.Error:
-                            current.img_headIcon.Source = current.Resources["error"] as BitmapImage;
+                            current.img_HeadIcon.Source = current.Resources["error"] as BitmapImage;
                             break;
                         case MetroMessageboxIcons.Done:
-                            current.img_headIcon.Source = current.Resources["done"] as BitmapImage;
+                            current.img_HeadIcon.Source = current.Resources["done"] as BitmapImage;
                             break;
                         case MetroMessageboxIcons.None:
-                            current.img_headIcon.Visibility = Visibility.Collapsed;
+                            current.img_HeadIcon.Visibility = Visibility.Collapsed;
                             current.iconPlace.Width = new GridLength(0);
                             break;
                         default:
@@ -121,6 +149,10 @@ namespace MetroMessageBoxLib
                     }
                 }));
 
+        /// <summary>
+        /// Messagebox的图标
+        /// Messagebox's icon
+        /// </summary>
         public MetroMessageboxIcons HeadIcon
         {
             get => (MetroMessageboxIcons)GetValue(HeadIconProperty);
@@ -138,12 +170,99 @@ namespace MetroMessageBoxLib
             set => SetValue(CloseCaptionButtonEnabledProperty, value);
         }
 
+        public static readonly DependencyProperty CheckboxVisibilityProperty =
+            DependencyProperty.Register("CheckboxVisibility", typeof(Visibility), typeof(MetroMessageBox),
+                new PropertyMetadata(Visibility.Collapsed));
+
+        public Visibility CheckboxVisibility
+        {
+            get => (Visibility)GetValue(CheckboxVisibilityProperty);
+            set => SetValue(CheckboxVisibilityProperty, value);
+        }
+
+        public static readonly DependencyProperty CheckboxTextProperty = DependencyProperty.Register("CheckboxText",
+            typeof(string), typeof(MetroMessageBox), new PropertyMetadata(string.Empty));
+
+        public string CheckboxText
+        {
+            get => (string)GetValue(CheckboxTextProperty);
+            set => SetValue(CheckboxTextProperty, value);
+        }
+
+        public static readonly DependencyProperty CheckboxCheckedProperty =
+            DependencyProperty.Register("CheckboxChecked", typeof(bool), typeof(MetroMessageBox),
+                new PropertyMetadata(false));
+
+        public bool? CheckboxChecked
+        {
+            get => (bool)GetValue(CheckboxCheckedProperty);
+            set => SetValue(CheckboxCheckedProperty, value);
+        }
+
         #endregion
 
+        #region prop
+
+        /// <summary>
+        /// 当按下此键触发Button1
+        /// The key to trigger Button1
+        /// </summary>
+        public Key? Button1Key { get; set; }
+
+        /// <summary>
+        /// 当按下此键触发Button2
+        /// /// The key to trigger Button2
+        /// </summary>
+        public Key? Button2Key { get; set; }
+
+        /// <summary>
+        /// 当按下此键触发Button3
+        /// /// The key to trigger Button3
+        /// </summary>
+        public Key? Button3Key { get; set; }
+
+        /// <summary>
+        /// 当按下此键触发关闭窗口按钮
+        /// /// The key to trigger closecaptionbutton
+        /// </summary>
+        public Key? CloseCaptionButtonKey { get; set; } = Key.Escape;
+
+        #endregion
+
+        /// <summary>
+        /// 创建MetroMessageBox的实例
+        /// Create a object of MetroMessageBox
+        /// </summary>
         public MetroMessageBox()
         {
             InitializeComponent();
-            SystemSounds.Asterisk.Play();
+        }
+
+        /// <summary>
+        /// 创建并初始化MetroMessageBox
+        /// Create and init MetroMessageBox
+        /// </summary>
+        public MetroMessageBox(string message, string title, MetroMessageboxIcons headIcon = MetroMessageboxIcons.None,
+                               string button1Text = null, string button2Text = null, string button3Text = null)
+        {
+            InitializeComponent();
+            Message = message;
+            Title = title;
+            HeadIcon = headIcon;
+            if (button1Text != null) {
+                Button1Text = button1Text;
+            }
+
+            if (button2Text != null) {
+                Button2Text = button2Text;
+                Button2Status = MetroMessageboxButtonStatus.Normal;
+            }
+
+            // ReSharper disable once InvertIf
+            if (button3Text != null) {
+                Button3Text = button3Text;
+                Button3Status = MetroMessageboxButtonStatus.Normal;
+            }
         }
 
         #region Events
@@ -189,6 +308,22 @@ namespace MetroMessageBoxLib
             else Result = MetroMessageboxResult.Button3;
             // ReSharper restore PossibleUnintendedReferenceComparison
             Close();
+        }
+
+        private void MetroMessageBox_OnKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Button1Key) {
+                ResultButton_Click(rbtn1, null);
+            }
+            else if (e.Key == Button2Key) {
+                ResultButton_Click(rbtn2, null);
+            }
+            else if (e.Key == Button3Key) {
+                ResultButton_Click(rbtn3, null);
+            }
+            else if (e.Key == CloseCaptionButtonKey) {
+                ButtonBase_OnClick(null, null);
+            }
         }
 
         #endregion

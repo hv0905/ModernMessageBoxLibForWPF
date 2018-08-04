@@ -1,18 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using MetroMessageBoxLib;
 using MessageBox = System.Windows.MessageBox;
 
@@ -31,11 +18,7 @@ namespace DemoProj
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            var msg = new MetroMessageBox();
-            msg.CloseCaptionButtonEnabled = false;
-            msg.Message = "The quick brown fox jumps over the lazy dog.";
-            msg.Button1Text = "Hello world";
-            msg.Title = "Title";
+            var msg = new MetroMessageBox("hello the world\n","hello world",MetroMessageboxIcons.Info,"ok","ok","ok");
             msg.ShowDialog();
         }
 

@@ -52,9 +52,9 @@ namespace MetroMessageBoxLib
         /// </param>
         public static MetroMessageboxResult Show(string msg, string title, QMetroMessageBoxButtons btns,
                                                   MetroMessageboxIcons icon = MetroMessageboxIcons.None,
-                                                  MetroMessageboxResult defaultResult = MetroMessageboxResult.button1)
+                                                  MetroMessageboxResult defaultResult = MetroMessageboxResult.Button1)
         {
-            if (defaultResult == MetroMessageboxResult.closeCaptionButton ||
+            if (defaultResult == MetroMessageboxResult.CloseCaptionButton ||
                 defaultResult == MetroMessageboxResult.Unknown) {
                 throw new ArgumentException(nameof(defaultResult));
             }
@@ -116,14 +116,46 @@ namespace MetroMessageBoxLib
             Show(msg, title, QMetroMessageBoxButtons.Ok, MetroMessageboxIcons.Done);
 
         /// <summary>
-        /// 
+        /// QMetroMessagebox的按扭组合
         /// </summary>
         public enum QMetroMessageBoxButtons
         {
+            /// <summary>
+            /// 按钮1:确定
+            /// Button1:OK
+            /// </summary>
             Ok,
+            /// <summary>
+            /// 按钮1:确定
+            /// 按钮2:取消
+            /// Button1:OK
+            /// Button2:Cancel
+            /// </summary>
             OkCancel,
+            /// <summary>
+            /// 按钮1:是
+            /// 按钮2:否
+            /// Button1:Yes
+            /// Button2:No
+            /// </summary>
             YesNo,
+            /// <summary>
+            /// 按钮1:是
+            /// 按钮2:否
+            /// 按钮3:取消
+            /// Button1:Yes
+            /// Button2:No
+            /// Button3:Cancel
+            /// </summary>
             YesNoCance,
+            /// <summary>
+            /// 按钮1:中止
+            /// 按钮2:重试
+            /// 按钮3:忽略
+            /// Button1:Abort
+            /// Button2:Retry
+            /// Button3:Ignore
+            /// </summary>
             AbortRetryIgnore,
         }
     }

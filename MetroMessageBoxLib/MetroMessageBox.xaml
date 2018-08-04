@@ -1,16 +1,20 @@
 ﻿<Window x:Class="MetroMessageBoxLib.MetroMessageBox"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" ShowInTaskbar="False"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" Closing="MetroMessageBox_OnClosing"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" x:Name="main"
         xmlns:local="clr-namespace:MetroMessageBoxLib" AllowsTransparency="True" WindowStyle="None"
-        mc:Ignorable="d" WindowStartupLocation="CenterScreen" Background="{x:Null}" Width="583" Height="226"
-        Title="MetroMsgBox" d:DesignWidth="583" d:DesignHeight="226">
+        StateChanged="MetroMessageBox_OnStateChanged"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" Background="{x:Null}" Width="600" SizeToContent="Height"
+        MinHeight="200"
+        Title="提示" d:DesignWidth="583" d:DesignHeight="200">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Themes/MetroButtons.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <local:MsgboxBtnsVisibilityConverter x:Key="msgboxBtnsVisibilityConverter" />
+            <local:MsgboxBtnsEnabledConverter x:Key="msgboxBtnsEnabledConverter" />
             <Storyboard x:Key="CloseStory" Completed="CloseStory_OnCompleted">
                 <DoubleAnimation Storyboard.TargetName="gridMain_Scale" Duration="0:0:0.2"
                                  Storyboard.TargetProperty="ScaleX" From="1" To="0.8" />
@@ -29,11 +33,11 @@
                                  From="0" To="1" />
                 <!--淡出-->
             </Storyboard>
-            <BitmapImage x:Key="info" UriSource="Resources/info-circle.png"/>
-            <BitmapImage x:Key="warning" UriSource="Resources/exclamation-triangle.png"/>
-            <BitmapImage x:Key="error" UriSource="Resources/times-circle.png"/>
-            <BitmapImage x:Key="done" UriSource="Resources/check-circle.png"/>
-            <BitmapImage x:Key="question" UriSource="Resources/question-circle.png"/>
+            <BitmapImage x:Key="info" UriSource="Resources/info-circle.png" />
+            <BitmapImage x:Key="warning" UriSource="Resources/exclamation-triangle.png" />
+            <BitmapImage x:Key="error" UriSource="Resources/times-circle.png" />
+            <BitmapImage x:Key="done" UriSource="Resources/check-circle.png" />
+            <BitmapImage x:Key="question" UriSource="Resources/question-circle.png" />
         </ResourceDictionary>
     </Window.Resources>
     <Window.Effect>
@@ -42,7 +46,7 @@
     </Window.Effect>
     <Window.Triggers>
         <EventTrigger RoutedEvent="Window.Loaded">
-            <BeginStoryboard Storyboard="{StaticResource OpenStory}"/>
+            <BeginStoryboard Storyboard="{StaticResource OpenStory}" />
         </EventTrigger>
     </Window.Triggers>
     <Grid x:Name="gridMain" RenderTransformOrigin="0.5,0.5">
@@ -57,29 +61,44 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <DockPanel Grid.Row="0">
-            <Button Width="30" Style="{StaticResource closeCaptionButtonStyle}" DockPanel.Dock="Right" Click="ButtonBase_OnClick"/>
-            <TextBlock VerticalAlignment="Center" TextAlignment="Center" Text="{Binding Title,ElementName=main}" Foreground="White" FontSize="20" MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"/>
+            <Button Width="30" Style="{StaticResource closeCaptionButtonStyle}" DockPanel.Dock="Right"
+                    Click="ButtonBase_OnClick" IsEnabled="{Binding CloseCaptionButtonEnabled, ElementName=main}" />
+            <TextBlock VerticalAlignment="Center" TextAlignment="Center" Text="{Binding Title,ElementName=main}"
+                       Foreground="White" FontSize="20" MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown" />
         </DockPanel>
         <Grid Grid.Row="1" Margin="30,2,10,2">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="40"/>
+                <RowDefinition />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="40" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="70"/>
-                <ColumnDefinition/>
+                <ColumnDefinition x:Name="iconPlace" Width="0"/>
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <DockPanel Grid.Row="2" Grid.ColumnSpan="2">
-                <Button DockPanel.Dock="Right" Content="取消" Margin="5,2,5,2" Style="{StaticResource Win8UWPBtn}" Width="100" FontSize="16"/>
-                <Button DockPanel.Dock="Right" Content="否(N)" Margin="5,2,5,2" Style="{StaticResource Win8UWPBtn}" Width="100" FontSize="16"/>
-                <Button DockPanel.Dock="Right" Content="是(Y)" Margin="5,2,5,2" Style="{StaticResource Win8UWPBtn}" Width="100" FontSize="16"/>
-                <Rectangle/>
+                <Button x:Name="rbtn3" DockPanel.Dock="Right" Margin="5,2,5,2" Style="{StaticResource Win8UWPBtn}"
+                        Width="100" FontSize="16" Click="ResultButton_Click"
+                        Content="{Binding Button3Text, ElementName=main}"
+                        Visibility="{Binding Button3Status, ElementName=main,Converter={StaticResource msgboxBtnsVisibilityConverter}}"
+                        IsEnabled="{Binding Button3Status, ElementName=main,Converter={StaticResource msgboxBtnsEnabledConverter}}" />
+                <Button x:Name="rbtn2" DockPanel.Dock="Right" Margin="5,2,5,2"
+                        Style="{StaticResource Win8UWPBtn}" Width="100" FontSize="16" Click="ResultButton_Click"
+                        Content="{Binding Button2Text, ElementName=main}"
+                        Visibility="{Binding Button2Status, ElementName=main,Converter={StaticResource msgboxBtnsVisibilityConverter}}"
+                        IsEnabled="{Binding Button2Status, ElementName=main,Converter={StaticResource msgboxBtnsEnabledConverter}}"/>
+                <Button x:Name="rbtn1" DockPanel.Dock="Right" Margin="5,2,5,2"
+                        Style="{StaticResource Win8UWPBtn}" Width="100" FontSize="16" Click="ResultButton_Click"
+                        Content="{Binding Button1Text, ElementName=main}"
+                        Visibility="{Binding Button1Status, ElementName=main,Converter={StaticResource msgboxBtnsVisibilityConverter}}"
+                        IsEnabled="{Binding Button1Status, ElementName=main,Converter={StaticResource msgboxBtnsEnabledConverter}}"/>
+                <Rectangle />
             </DockPanel>
-            <Image Grid.Row="0" Grid.Column="0" Source="{DynamicResource info}" Width="60" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0"/>
-            <TextBlock Text="操作完成." HorizontalAlignment="Left" TextWrapping="Wrap" Foreground="White" FontSize="16"
-                       Grid.Row="0" Grid.Column="1" Margin="0,20,0,0"/>
-            
+            <Image x:Name="img_headIcon" Grid.Row="0" Grid.Column="0" Source="{DynamicResource warning}" Width="60"
+                   HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" Visibility="Collapsed"/>
+            <TextBlock Text="{Binding Message, ElementName=main}" HorizontalAlignment="Left"
+                       TextWrapping="Wrap" Foreground="White" FontSize="16"
+                       Grid.Row="0" Grid.Column="1" Margin="0,20,0,0" />
         </Grid>
     </Grid>
 </Window>

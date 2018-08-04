@@ -26,11 +26,16 @@ namespace DemoProj
         public MainWindow()
         {
             InitializeComponent();
+            
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             var msg = new MetroMessageBox();
+            msg.CloseCaptionButtonEnabled = false;
+            msg.Message = "The quick brown fox jumps over the lazy dog.";
+            msg.Button1Text = "Hello world";
+            msg.Title = "Title";
             msg.ShowDialog();
         }
 

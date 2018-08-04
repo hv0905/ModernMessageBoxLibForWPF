@@ -50,6 +50,11 @@
     <Compile Include="MetroMessageBox.xaml.cs">
       <DependentUpon>MetroMessageBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MetroMessageboxButtonStatus.cs" />
+    <Compile Include="MetroMessageboxIcons.cs" />
+    <Compile Include="MetroMessageboxResult.cs" />
+    <Compile Include="MsgboxBtnsEnabledConverter.cs" />
+    <Compile Include="MsgboxBtnsVisibilityConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

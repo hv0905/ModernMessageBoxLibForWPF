@@ -97,6 +97,9 @@
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal">
                                     <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ct"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Duration="0" To="1" />
                                         <DoubleAnimation Storyboard.TargetName="back"
                                                          Storyboard.TargetProperty="Opacity"
                                                          Duration="0:0:0.3" To="0" />
@@ -126,9 +129,9 @@
                                 </VisualState>
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="rctdisable"
+                                        <DoubleAnimation Storyboard.TargetName="ct"
                                                          Storyboard.TargetProperty="Opacity"
-                                                         Duration="0" To="0.45" />
+                                                         Duration="0" To="0.5" />
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -143,11 +146,10 @@
 
                         <Border x:Name="back" Background="{TemplateBinding Background}" CornerRadius="0" Opacity="0"
                                 RenderTransformOrigin="0.5,0.5" />
-                        <ContentPresenter Content="{TemplateBinding Content}"
+                        <ContentPresenter x:Name="ct" Content="{TemplateBinding Content}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           Margin="{TemplateBinding Padding}" />
-                        <Rectangle x:Name="rctdisable" Opacity="0" Fill="#FFF4F8F9" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

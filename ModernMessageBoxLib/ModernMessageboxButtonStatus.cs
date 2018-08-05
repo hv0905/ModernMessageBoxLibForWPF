@@ -1,5 +1,6 @@
-﻿namespace MetroMessageBoxLib {
-    public enum MetroMessageboxButtonStatus
+﻿namespace ModernMessageBoxLib
+{
+    public enum ModernMessageboxButtonStatus
     {
         /// <summary>
         /// 显示,可用

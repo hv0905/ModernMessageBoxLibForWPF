@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{BA88D9E1-3978-4092-AE72-9A82BAF65F15}</ProjectGuid>
     <OutputType>library</OutputType>
-    <RootNamespace>MetroMessageBoxLib</RootNamespace>
-    <AssemblyName>MetroMessageBoxLib</AssemblyName>
+    <RootNamespace>ModernMessageBoxLib</RootNamespace>
+    <AssemblyName>ModernMessageBoxLib</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -47,14 +47,13 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MetroMessageBox.xaml.cs">
-      <DependentUpon>MetroMessageBox.xaml</DependentUpon>
+    <Compile Include="ModernMessageBox.xaml.cs">
+      <DependentUpon>ModernMessageBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MetroMessageboxButtonStatus.cs" />
-    <Compile Include="MetroMessageboxIcons.cs" />
-    <Compile Include="MetroMessageboxResult.cs" />
-    <Compile Include="MsgboxBtnsEnabledConverter.cs" />
-    <Compile Include="MsgboxBtnsVisibilityConverter.cs" />
+    <Compile Include="ModernMessageboxButtonStatus.cs" />
+    <Compile Include="ModernMessageboxIcons.cs" />
+    <Compile Include="ModernMessageboxResult.cs" />
+    <Compile Include="ModernMessageboxButtonStatusConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -68,7 +67,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="QMetroMessageBox.cs" />
+    <Compile Include="QModernMessageBox.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -79,11 +78,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="MetroMessageBox.xaml">
+    <Page Include="ModernMessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\MetroButtons.xaml">
+    <Page Include="Themes\ModernButtons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

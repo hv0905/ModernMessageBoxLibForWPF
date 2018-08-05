@@ -1,5 +1,6 @@
-﻿namespace MetroMessageBoxLib {
-    public enum MetroMessageboxIcons
+﻿namespace ModernMessageBoxLib
+{
+    public enum ModernMessageboxIcons
     {
         /// <summary>
         /// (i)

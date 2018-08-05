@@ -1,5 +1,6 @@
-﻿namespace MetroMessageBoxLib {
-    public enum MetroMessageboxResult
+﻿namespace ModernMessageBoxLib
+{
+    public enum ModernMessageboxResult
     {
         /// <summary>
         /// 从左往右数第一个按钮(是,确定,...)

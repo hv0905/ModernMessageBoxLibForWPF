@@ -95,9 +95,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MetroMessageBoxLib\MetroMessageBoxLib.csproj">
+    <ProjectReference Include="..\ModernMessageBoxLib\ModernMessageBoxLib.csproj">
       <Project>{ba88d9e1-3978-4092-ae72-9a82baf65f15}</Project>
-      <Name>MetroMessageBoxLib</Name>
+      <Name>ModernMessageBoxLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

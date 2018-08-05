@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Forms;
-using MetroMessageBoxLib;
+using System.Windows.Input;
+using ModernMessageBoxLib;
 using MessageBox = System.Windows.MessageBox;
 
 namespace DemoProj
@@ -18,14 +19,23 @@ namespace DemoProj
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            var msg = new MetroMessageBox("hello the world\n","hello world",MetroMessageboxIcons.Info,"ok","ok","ok");
+            var msg = new ModernMessageBox("hello the world\n", "hello world", ModernMessageboxIcons.Info, "ok", "ok",
+                "ok") {
+                Button1Key = Key.D1,
+                Button2Key = Key.D2,
+                Button3Key = Key.D3,
+                CheckboxText = "Don't show this again",
+                CheckboxVisibility = Visibility.Visible
+            };
+            
             msg.ShowDialog();
+            MessageBox.Show(msg.Result.ToString());
         }
 
         private void ButtonBase_OnClick_1(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("The quick brown fox jumps over the lazy dog.jvfdlgvdfsjigjdsfoidoffjffffjdhjsdifsdjfosdijfoisdjfoisdjfoisjdssdiidinvcxmnvcmvxcnvjxcnxcvshdjiofjsifdsidsssosisdi", "Hello world", MessageBoxButton.YesNoCancel,
-                MessageBoxImage.Warning);
+            QModernMessageBox.Show("hahaha", "title", QModernMessageBox.QModernMessageBoxButtons.AbortRetryIgnore,
+                ModernMessageboxIcons.Warning);
         }
 
         private void ButtonBase_OnClick_2(object sender, RoutedEventArgs e)

@@ -47,7 +47,7 @@ namespace ModernMessageBoxLib.Properties {
         }
         
         /// <summary>
-        ///   使用此强类型资源类，为所有资源查找
+        ///   重写当前线程的 CurrentUICulture 属性
         ///   重写当前线程的 CurrentUICulture 属性。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -57,47 +57,6 @@ namespace ModernMessageBoxLib.Properties {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 en.ok=OK
-        ///en.cancel=Cancel
-        ///en.yes=Yes
-        ///en.no=No
-        ///en.abort=Abort
-        ///en.retry=Retry
-        ///en.ignore=Ignore
-        ///zh-cn.ok=确定
-        ///zh-cn.cancel=取消
-        ///zh-cn.yes=是(Y)
-        ///zh-cn.no=否(N)
-        ///zh-cn.abort=中止(A)
-        ///zh-cn.retry=重试(R)
-        ///zh-cn.ignore=忽略(I)
-        ///zh.ok=確定
-        ///zh.cancel=取消
-        ///zh.yes=是(Y)
-        ///zh.no=否(N)
-        ///zh.abort=中止(A)
-        ///zh.retry=重試(R)
-        ///zh.ignore=忽略(I)
-        ///ja.ok=決定
-        ///ja.cancel=キャンセル
-        ///ja.yes=は(Y)
-        ///ja.no=いいえ(N)
-        ///ja.abort=サスペンション(A)
-        ///ja.retry=再試行(R)
-        ///ja.ignore=無視する(I)
-        ///fr.ok=Déterminer
-        ///fr.cancel=Annuler
-        ///fr.yes=Oui(Y)
-        ///fr.no=Non(N)
-        ///fr.abort=Suspensio [字符串的其余部分被截断]&quot;; 的本地化字符串。
-        /// </summary>
-        internal static string QMessageboxBtnText {
-            get {
-                return ResourceManager.GetString("QMessageboxBtnText", resourceCulture);
             }
         }
     }

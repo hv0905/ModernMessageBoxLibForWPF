@@ -15,72 +15,8 @@ namespace ModernMessageBoxLib
     /// </summary>
     public static class QModernMessageBox
     {
-        /// <summary>
-        /// 更改信息框的按钮文本,有以下Key可选:
-        /// Change the text of the button ,there are those key can be choose:
-        /// {ok,cancel,yes,no,abort,retry,ignore}
-        /// </summary>
-        public static Dictionary<string, string> buttonTextMap = new Dictionary<string, string>();
-        private static Dictionary<string, string> _defaultButtonTextMap = new Dictionary<string, string>();
 
-
-        static QModernMessageBox()
-        {
-            ChDefaultBtnTxt(CultureInfo.CurrentCulture);
-            ReadMap(_defaultButtonTextMap, "en");
-        }
-
-        /// <summary>
-        /// 将信息框按钮语言更改到指定的语言
-        /// Change the messagebox button to the following language
-        /// </summary>
-        /// <param name="region"></param>
-        public static void ChDefaultBtnTxt(CultureInfo region)
-        {
-            ChDefaultBtnTxt(region.Name);
-        }
-
-        /// <summary>
-        /// 将信息框按钮语言更改到指定的语言
-        /// Change the messagebox button to the following language
-        /// </summary>
-        /// <param name="region">地区缩写</param>
-        public static void ChDefaultBtnTxt(string region)
-        {
-            var tmp = region.ToLower();
-            if (tmp != "zh-cn") {
-                tmp = tmp.Substring(0, 2);
-            }
-
-            ReadMap(buttonTextMap, tmp);
-        }
-
-        private static void ReadMap(Dictionary<string, string> dst, string loc)
-        {
-            dst.Clear();
-            var lens = Resources.QMessageboxBtnText.Split(new[] {"\r\n"}, StringSplitOptions.RemoveEmptyEntries)
-                .ToList();
-
-            lens.RemoveAll(x => !x.StartsWith(loc));
-
-            var kwpair = lens.Select(x => {
-                var tmp = x.Split('=');
-                var key = tmp[0].Split('.')[1];
-                var value = tmp[1];
-                return new KeyValuePair<string, string>(key, value);
-            });
-
-            foreach (var item in kwpair) {
-                dst.Add(item.Key, item.Value);
-            }
-        }
-
-        private static string GetTxt(string key)
-        {
-            if (buttonTextMap.ContainsKey(key))
-                return buttonTextMap[key];
-            else return _defaultButtonTextMap[key];
-        }
+        public static QMetroMessageLang MainLang { get; set; } = new QMetroMessageLang();
 
         /// <summary>
         /// 创建并显示一个信息框
@@ -102,42 +38,42 @@ namespace ModernMessageBoxLib
             var msgBox = new ModernMessageBox(msg, title, icon);
             switch (btns) {
                 case QModernMessageBoxButtons.Ok:
-                    msgBox.Button1Text = GetTxt("ok");
+                    msgBox.Button1Text = MainLang.Ok;
                     msgBox.Button1Key = Key.Enter;
                     break;
                 case QModernMessageBoxButtons.OkCancel:
-                    msgBox.Button1Text = GetTxt("ok");
+                    msgBox.Button1Text = MainLang.Ok;
                     msgBox.Button1Key = Key.Enter;
                     msgBox.Button2Status = ModernMessageboxButtonStatus.Normal;
-                    msgBox.Button2Text = GetTxt("cancel");
+                    msgBox.Button2Text = MainLang.Cancel;
                     msgBox.Button2Key = Key.Escape;
                     break;
                 case QModernMessageBoxButtons.YesNo:
-                    msgBox.Button1Text = GetTxt("yes");
+                    msgBox.Button1Text = MainLang.Yes;
                     msgBox.Button1Key = Key.Y;
                     msgBox.Button2Status = ModernMessageboxButtonStatus.Normal;
-                    msgBox.Button2Text = GetTxt("no");
+                    msgBox.Button2Text = MainLang.No;
                     msgBox.Button2Key = Key.N;
                     msgBox.CloseCaptionButtonEnabled = false;
                     break;
                 case QModernMessageBoxButtons.YesNoCancel:
-                    msgBox.Button1Text = GetTxt("yes");
+                    msgBox.Button1Text = MainLang.Yes;
                     msgBox.Button1Key = Key.Y;
                     msgBox.Button2Status = ModernMessageboxButtonStatus.Normal;
-                    msgBox.Button2Text = GetTxt("no");
+                    msgBox.Button2Text = MainLang.No;
                     msgBox.Button2Key = Key.N;
                     msgBox.Button3Status = ModernMessageboxButtonStatus.Normal;
-                    msgBox.Button3Text = GetTxt("cancel");
+                    msgBox.Button3Text = MainLang.Cancel;
                     msgBox.Button3Key = Key.Escape;
                     break;
                 case QModernMessageBoxButtons.AbortRetryIgnore:
-                    msgBox.Button1Text = GetTxt("abort");
+                    msgBox.Button1Text = MainLang.Abort;
                     msgBox.Button1Key = Key.A;
                     msgBox.Button2Status = ModernMessageboxButtonStatus.Normal;
-                    msgBox.Button2Text = GetTxt("retry");
+                    msgBox.Button2Text = MainLang.Retry;
                     msgBox.Button2Key = Key.R;
                     msgBox.Button3Status = ModernMessageboxButtonStatus.Normal;
-                    msgBox.Button3Text = GetTxt("ignore");
+                    msgBox.Button3Text = MainLang.Ignore;
                     msgBox.Button3Key = Key.I;
                     msgBox.CloseCaptionButtonEnabled = false;
                     break;
@@ -245,5 +181,20 @@ namespace ModernMessageBoxLib
             /// </summary>
             AbortRetryIgnore,
         }
+    }
+
+    /// <summary>
+    /// 用于给QMessageBox提供语言设定
+    /// Provide language setting for QMessageBox
+    /// </summary>
+    public class QMetroMessageLang
+    {
+        public string Ok { get; set; } = "OK";
+        public string Cancel { get; set; } = "Cancel";
+        public string Yes { get; set; } = "Yes";
+        public string No { get; set; } = "No";
+        public string Ignore { get; set; } = "Ignore";
+        public string Retry { get; set; } = "Retry";
+        public string Abort { get; set; } = "Abort";
     }
 }

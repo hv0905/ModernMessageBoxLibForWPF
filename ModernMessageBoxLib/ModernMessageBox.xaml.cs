@@ -3,8 +3,10 @@ using System.ComponentModel;
 using System.Media;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
+using ModernMessageBoxLib.Helper;
 
 namespace ModernMessageBoxLib
 {
@@ -126,19 +128,19 @@ namespace ModernMessageBoxLib
 
                     switch (newVal) {
                         case ModernMessageboxIcons.Info:
-                            current.img_HeadIcon.Source = current.Resources["info"] as BitmapImage;
+                            current.img_HeadPath.Data = current.Resources["icoInfo"] as Geometry;
                             break;
                         case ModernMessageboxIcons.Question:
-                            current.img_HeadIcon.Source = current.Resources["question"] as BitmapImage;
+                            current.img_HeadPath.Data = current.Resources["icoHelp"] as Geometry;
                             break;
                         case ModernMessageboxIcons.Warning:
-                            current.img_HeadIcon.Source = current.Resources["warning"] as BitmapImage;
+                            current.img_HeadPath.Data = current.Resources["icoWarning"] as Geometry;
                             break;
                         case ModernMessageboxIcons.Error:
-                            current.img_HeadIcon.Source = current.Resources["error"] as BitmapImage;
+                            current.img_HeadPath.Data = current.Resources["icoError"] as Geometry;
                             break;
                         case ModernMessageboxIcons.Done:
-                            current.img_HeadIcon.Source = current.Resources["done"] as BitmapImage;
+                            current.img_HeadPath.Data = current.Resources["icoCheck"] as Geometry;
                             break;
                         case ModernMessageboxIcons.None:
                             current.img_HeadIcon.Visibility = Visibility.Collapsed;
@@ -327,5 +329,12 @@ namespace ModernMessageBoxLib
         }
 
         #endregion
+
+        private void ModernMessageBox_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            if (WindowBlurBackgroundHelper.BlurWindow(this)) {
+
+            }
+        }
     }
 }

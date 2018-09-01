@@ -47,6 +47,8 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helper\UnSafeWin32NativeMethods.cs" />
+    <Compile Include="Helper\WindowBlurBackgroundHelper.cs" />
     <Compile Include="ModernMessageBox.xaml.cs">
       <DependentUpon>ModernMessageBox.xaml</DependentUpon>
     </Compile>
@@ -82,20 +84,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\MaterialDesignIcons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\ModernButtons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MDL2_Cancel.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\check-circle.png" />
-    <Resource Include="Resources\exclamation-triangle.png" />
-    <Resource Include="Resources\info-circle.png" />
-    <Resource Include="Resources\question-circle.png" />
-    <Resource Include="Resources\times-circle.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

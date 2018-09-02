@@ -4,15 +4,15 @@ By using ModernMessageBoxLib, you can create a ModernMessageBox with a single co
 ## Screenshots
 Common usage
 
-![sc1](web/sc1.png)
+![sc1](https://github.com/hv0905/ModernMessageBoxLibForWPF/raw/master/web/sc1.png)
 
 Customize
 
-![sc2](web/sc2.png)
+![sc2](https://github.com/hv0905/ModernMessageBoxLibForWPF/raw/master/web/sc2.png)
 
 With a different color
 
-![sc3](web/sc3.png)
+![sc3](https://github.com/hv0905/ModernMessageBoxLibForWPF/raw/master/web/sc3.png)
 
 ## Get Started
 

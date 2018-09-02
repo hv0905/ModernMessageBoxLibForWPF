@@ -7,6 +7,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using ModernMessageBoxLib.Helper;
+using static System.Byte;
 
 namespace ModernMessageBoxLib
 {
@@ -333,8 +334,31 @@ namespace ModernMessageBoxLib
 
         private void ModernMessageBox_OnLoaded(object sender, RoutedEventArgs e)
         {
-            if (WindowBlurBackgroundHelper.BlurWindow(this)) {
+            if (!WindowBlurBackgroundHelper.BlurWindow(this)) {
+                if (this.Background is SolidColorBrush scb) {
+                    var col = scb.Color;
+                    col.A = MaxValue;
+                    Background = new SolidColorBrush(col);
 
+                }
+            }
+
+            switch (HeadIcon) {
+                case ModernMessageboxIcons.Info:
+                    SystemSounds.Asterisk.Play();
+                    break;
+                case ModernMessageboxIcons.Question:
+                    SystemSounds.Question.Play();
+                    break;
+                case ModernMessageboxIcons.Warning:
+                    SystemSounds.Exclamation.Play();
+                    break;
+                case ModernMessageboxIcons.Error:
+                    SystemSounds.Hand.Play();
+                    break;
+                case ModernMessageboxIcons.Done:
+                    SystemSounds.Asterisk.Play();
+                    break;
             }
         }
     }

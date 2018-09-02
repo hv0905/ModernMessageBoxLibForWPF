@@ -11,12 +11,10 @@ using ModernMessageBoxLib.Helper;
 namespace ModernMessageBoxLib
 {
     /// <summary>
-    /// ModernMessageBox.xaml 的交互逻辑
+    /// Display a MessageBox with a Modern Style
     /// </summary>
     public partial class ModernMessageBox : Window
     {
-        private bool _exitAnimateDone;
-
         public ModernMessageboxResult Result { get; private set; } = ModernMessageboxResult.Unknown;
 
         #region DependencyProperty
@@ -25,7 +23,6 @@ namespace ModernMessageBoxLib
             typeof(string), typeof(ModernMessageBox), new PropertyMetadata("Button1"));
 
         /// <summary>
-        /// Button1的显示内容
         /// The display content of Button1
         /// </summary>
         public string Button1Text
@@ -39,7 +36,6 @@ namespace ModernMessageBoxLib
             new PropertyMetadata(ModernMessageboxButtonStatus.Normal));
 
         /// <summary>
-        /// Button1的状态(IsEnabled和visibility)
         /// The status of Button1(IsEnabled and Visibility)
         /// </summary>
         public ModernMessageboxButtonStatus Button1Status
@@ -52,7 +48,6 @@ namespace ModernMessageBoxLib
             typeof(string), typeof(ModernMessageBox), new PropertyMetadata("Button2"));
 
         /// <summary>
-        /// Button2的显示内容
         /// The display content of Button2
         /// </summary>
         public string Button2Text
@@ -66,7 +61,6 @@ namespace ModernMessageBoxLib
             new PropertyMetadata(ModernMessageboxButtonStatus.Invisibled));
 
         /// <summary>
-        /// Button2的状态(IsEnabled和visibility)
         /// The status of Button2(IsEnabled and Visibility)
         /// </summary>
         public ModernMessageboxButtonStatus Button2Status
@@ -79,7 +73,6 @@ namespace ModernMessageBoxLib
             typeof(string), typeof(ModernMessageBox), new PropertyMetadata("Button3"));
 
         /// <summary>
-        /// Button3的显示内容
         /// The display content of Button3
         /// </summary>
         public string Button3Text
@@ -93,7 +86,6 @@ namespace ModernMessageBoxLib
             new PropertyMetadata(ModernMessageboxButtonStatus.Invisibled));
 
         /// <summary>
-        /// Button3的状态(IsEnabled和visibility)
         /// The status of Button3(IsEnabled and Visibility)
         /// </summary>
         public ModernMessageboxButtonStatus Button3Status
@@ -106,7 +98,6 @@ namespace ModernMessageBoxLib
             typeof(string), typeof(ModernMessageBox), new PropertyMetadata(string.Empty));
 
         /// <summary>
-        /// 显示在MessageBox的信息
         /// The message to display in the messagebox
         /// </summary>
         public string Message
@@ -152,7 +143,6 @@ namespace ModernMessageBoxLib
                 }));
 
         /// <summary>
-        /// Messagebox的图标
         /// Messagebox's icon
         /// </summary>
         public ModernMessageboxIcons HeadIcon
@@ -166,6 +156,9 @@ namespace ModernMessageBoxLib
             DependencyProperty.Register("CloseCaptionButtonEnabled", typeof(bool), typeof(ModernMessageBox),
                 new PropertyMetadata(true));
 
+        /// <summary>
+        /// control the IsEnabled attr of the close button
+        /// </summary>
         public bool CloseCaptionButtonEnabled
         {
             get => (bool)GetValue(CloseCaptionButtonEnabledProperty);
@@ -176,6 +169,9 @@ namespace ModernMessageBoxLib
             DependencyProperty.Register("CheckboxVisibility", typeof(Visibility), typeof(ModernMessageBox),
                 new PropertyMetadata(Visibility.Collapsed));
 
+        /// <summary>
+        /// control the Visibility of the checkbox
+        /// </summary>
         public Visibility CheckboxVisibility
         {
             get => (Visibility)GetValue(CheckboxVisibilityProperty);
@@ -185,6 +181,9 @@ namespace ModernMessageBoxLib
         public static readonly DependencyProperty CheckboxTextProperty = DependencyProperty.Register("CheckboxText",
             typeof(string), typeof(ModernMessageBox), new PropertyMetadata(string.Empty));
 
+        /// <summary>
+        /// The text to display on the checkbox
+        /// </summary>
         public string CheckboxText
         {
             get => (string)GetValue(CheckboxTextProperty);
@@ -195,6 +194,9 @@ namespace ModernMessageBoxLib
             DependencyProperty.Register("CheckboxChecked", typeof(bool), typeof(ModernMessageBox),
                 new PropertyMetadata(false));
 
+        /// <summary>
+        /// Get or set the IsChecked attr of the checkbox
+        /// </summary>
         public bool? CheckboxChecked
         {
             get => (bool)GetValue(CheckboxCheckedProperty);
@@ -206,48 +208,47 @@ namespace ModernMessageBoxLib
         #region prop
 
         /// <summary>
-        /// 当按下此键触发Button1
         /// The key to trigger Button1
         /// </summary>
         public Key? Button1Key { get; set; }
 
         /// <summary>
-        /// 当按下此键触发Button2
         /// /// The key to trigger Button2
         /// </summary>
         public Key? Button2Key { get; set; }
 
         /// <summary>
-        /// 当按下此键触发Button3
-        /// /// The key to trigger Button3
+        /// The key to trigger Button3
         /// </summary>
         public Key? Button3Key { get; set; }
 
         /// <summary>
-        /// 当按下此键触发关闭窗口按钮
-        /// /// The key to trigger closecaptionbutton
+        /// The key to trigger closecaptionbutton
+        /// Default is Escape
         /// </summary>
         public Key? CloseCaptionButtonKey { get; set; } = Key.Escape;
 
         #endregion
 
         /// <summary>
-        /// 创建MetroMessageBox的实例
         /// Create a object of ModernMessageBox
         /// </summary>
         public ModernMessageBox()
         {
             InitializeComponent();
+            Background = QModernMessageBox.GlobalBackground;
+            Foreground = QModernMessageBox.GlobalForeground;
         }
 
         /// <summary>
-        /// 创建并初始化MetroMessageBox
         /// Create and init ModernMessageBox
         /// </summary>
         public ModernMessageBox(string message, string title, ModernMessageboxIcons headIcon = ModernMessageboxIcons.None,
                                string button1Text = null, string button2Text = null, string button3Text = null)
         {
             InitializeComponent();
+            Background = QModernMessageBox.GlobalBackground;
+            Foreground = QModernMessageBox.GlobalForeground;
             Message = message;
             Title = title;
             HeadIcon = headIcon;

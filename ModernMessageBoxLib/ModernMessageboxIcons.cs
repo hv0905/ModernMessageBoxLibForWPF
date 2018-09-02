@@ -1,5 +1,8 @@
 ﻿namespace ModernMessageBoxLib
 {
+    /// <summary>
+    /// Defind the icon to display on the ModernMessageBox
+    /// </summary>
     public enum ModernMessageboxIcons
     {
         /// <summary>
@@ -23,7 +26,6 @@
         /// </summary>
         Done,
         /// <summary>
-        /// 无图标
         /// No any icons
         /// </summary>
         None,

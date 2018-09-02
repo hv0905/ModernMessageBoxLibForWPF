@@ -7,8 +7,8 @@
         xmlns:local="clr-namespace:ModernMessageBoxLib" Style="{DynamicResource BorderlessWindowStyle}"
         StateChanged="MetroMessageBox_OnStateChanged" Loaded="ModernMessageBox_OnLoaded"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" Width="600" SizeToContent="Height"
-        MinHeight="200" Foreground="Red"
-        Title="提示" d:DesignWidth="583" d:DesignHeight="200">
+        MinHeight="200"
+        Title="Notice" d:DesignWidth="583" d:DesignHeight="200">
     <Window.Background>
         <SolidColorBrush Color="Black" Opacity="0.7" />
     </Window.Background>

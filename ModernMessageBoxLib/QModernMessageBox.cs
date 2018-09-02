@@ -3,39 +3,54 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Input;
+using System.Windows.Media;
 using ModernMessageBoxLib.Properties;
 
 namespace ModernMessageBoxLib
 {
     /// <summary>
-    /// 对MetroMessageBox的常用实现,
-    /// 使用方法类似于WPF的MessageBox.
     /// Common usage of ModernMessageBox,
-    /// Just like using <see cref="System.Windows.MessageBox"/> in WPF.
+    /// Just like using <see cref="System.Windows.MessageBox"/> in WPF or using QMessageBox in QT
     /// </summary>
     public static class QModernMessageBox
     {
-
+        /// <summary>
+        /// Get or set the text of the buttons
+        /// The default value is in English. If you want other language, you should specify them manully
+        /// </summary>
         public static QMetroMessageLang MainLang { get; set; } = new QMetroMessageLang();
 
         /// <summary>
-        /// 创建并显示一个信息框
-        /// Create and show a Metro Messagebox
+        /// Specify the default Background for ModernMessageBox
+        /// You can specify a transparent or half-transparent value in this field.
+        /// If the operate system is Win10, The window will get a Blur background.
+        /// The default value is Black,0.6 Opacity
+        /// </summary>
+        public static Brush GlobalBackground { get; set; } = new SolidColorBrush(Colors.Black) {Opacity = 0.6};
+        /// <summary>
+        /// Specify the default Foreground for ModernMessageBox
+        /// The default value is White
+        /// </summary>
+        public static Brush GlobalForeground { get; set; } = Brushes.White;
+
+        /// <summary>
+        /// Create and show a Modern Messagebox
         /// </summary>
         /// <param name="msg">Message</param>
         /// <param name="title">Title</param>
         /// <param name="btns">
         /// The bottons to show
-        /// 要显示的按钮
         /// </param>
         /// <param name="icon">
         /// The icon to show
-        /// 要显示的图标
         /// </param>
         public static ModernMessageboxResult Show(string msg, string title, QModernMessageBoxButtons btns,
                                                  ModernMessageboxIcons icon = ModernMessageboxIcons.None)
         {
-            var msgBox = new ModernMessageBox(msg, title, icon);
+            var msgBox = new ModernMessageBox(msg, title, icon) {
+                Background = GlobalBackground,
+                Foreground = GlobalForeground
+            };
             switch (btns) {
                 case QModernMessageBoxButtons.Ok:
                     msgBox.Button1Text = MainLang.Ok;
@@ -87,7 +102,6 @@ namespace ModernMessageBoxLib
 
         /// <summary>
         /// Create and show a metro messagebox with a warning sign and a "OK" button
-        /// 创建并显示一个带有警告标识和"确定"按钮的消息框
         /// </summary>
         /// <param name="msg">Message</param>
         /// <param name="title">Title</param>
@@ -95,8 +109,7 @@ namespace ModernMessageBoxLib
             Show(msg, title, QModernMessageBoxButtons.Ok, ModernMessageboxIcons.Warning);
 
         /// <summary>
-        /// Create and show a metro messagebox with a infomation sign and a "OK" button
-        /// 创建并显示一个带有信息标识和"确定"按钮的消息框
+        /// Create and show a metro messagebox with an infomation sign and a "OK" button
         /// </summary>
         /// <param name="msg">Message</param>
         /// <param name="title">Title</param>
@@ -104,8 +117,7 @@ namespace ModernMessageBoxLib
             Show(msg, title, QModernMessageBoxButtons.Ok, ModernMessageboxIcons.Info);
 
         /// <summary>
-        /// Create and show a metro messagebox with a error sign and a "OK" button
-        /// 创建并显示一个带有错误标识和"确定"按钮的消息框
+        /// Create and show a metro messagebox with an error sign and a "OK" button
         /// </summary>
         /// <param name="msg">Message</param>
         /// <param name="title">Title</param>
@@ -114,7 +126,6 @@ namespace ModernMessageBoxLib
 
         /// <summary>
         /// Create and show a metro messagebox with a question sign and a "OK" button
-        /// 创建并显示一个带有问号标识和"确定"按钮的消息框
         /// </summary>
         /// <param name="msg">Message</param>
         /// <param name="title">Title</param>
@@ -123,7 +134,6 @@ namespace ModernMessageBoxLib
 
         /// <summary>
         /// Create and show a metro messagebox with a "OK" button
-        /// 创建并显示一个带有"确定"按钮的消息框
         /// </summary>
         /// <param name="msg">Message</param>
         /// <param name="title">Title</param>
@@ -131,7 +141,6 @@ namespace ModernMessageBoxLib
 
         /// <summary>
         /// Create and show a metro messagebox with a done sign and a "OK" button
-        /// 创建并显示一个带有对勾标识和"确定"按钮的消息框
         /// </summary>
         /// <param name="msg">Message</param>
         /// <param name="title">Title</param>
@@ -139,42 +148,31 @@ namespace ModernMessageBoxLib
             Show(msg, title, QModernMessageBoxButtons.Ok, ModernMessageboxIcons.Done);
 
         /// <summary>
-        /// QMetroMessagebox的按扭组合
+        /// Define the buttons on the QModernMessageBox
         /// </summary>
         public enum QModernMessageBoxButtons
         {
             /// <summary>
-            /// 按钮1:确定
             /// Button1:OK
             /// </summary>
             Ok,
             /// <summary>
-            /// 按钮1:确定
-            /// 按钮2:取消
             /// Button1:OK
             /// Button2:Cancel
             /// </summary>
             OkCancel,
             /// <summary>
-            /// 按钮1:是
-            /// 按钮2:否
             /// Button1:Yes
             /// Button2:No
             /// </summary>
             YesNo,
             /// <summary>
-            /// 按钮1:是
-            /// 按钮2:否
-            /// 按钮3:取消
             /// Button1:Yes
             /// Button2:No
             /// Button3:Cancel
             /// </summary>
             YesNoCancel,
             /// <summary>
-            /// 按钮1:中止
-            /// 按钮2:重试
-            /// 按钮3:忽略
             /// Button1:Abort
             /// Button2:Retry
             /// Button3:Ignore
@@ -184,8 +182,8 @@ namespace ModernMessageBoxLib
     }
 
     /// <summary>
-    /// 用于给QMessageBox提供语言设定
     /// Provide language setting for QMessageBox
+    /// the default language is in English
     /// </summary>
     public class QMetroMessageLang
     {

@@ -3,14 +3,9 @@ using System.Runtime.InteropServices;
 
 namespace ModernMessageBoxLib.Helper
 {
-    /// <summary>
-    /// 不安全的Win32 Native API
-    /// </summary>
+
     internal static class UnSafeWin32NativeMethods
     {
-        /// <summary>
-        /// 启动windows 10 创意者更新 毛玻璃效果
-        /// </summary>
         [DllImport("user32.dll")]
         internal static extern int SetWindowCompositionAttribute(IntPtr hwnd, ref WindowCompositionAttributeData data);
 

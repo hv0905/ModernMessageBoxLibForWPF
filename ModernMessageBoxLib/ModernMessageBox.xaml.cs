@@ -277,17 +277,17 @@ namespace ModernMessageBoxLib
 
         private void MetroMessageBox_OnClosing(object sender, CancelEventArgs e)
         {
-            if (_exitAnimateDone) return;
-            e.Cancel = true;
-            var sb = (Storyboard)Resources["CloseStory"];
-            sb.Begin();
+//            if (_exitAnimateDone) return;
+//            e.Cancel = true;
+//            var sb = (Storyboard)Resources["CloseStory"];
+//            sb.Begin();
         }
 
-        private void CloseStory_OnCompleted(object sender, EventArgs e)
-        {
-            _exitAnimateDone = true;
-            Close();
-        }
+//        private void CloseStory_OnCompleted(object sender, EventArgs e)
+//        {
+//            _exitAnimateDone = true;
+//            Close();
+//        }
 
         private void UIElement_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

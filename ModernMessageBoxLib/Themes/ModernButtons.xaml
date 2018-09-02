@@ -275,5 +275,12 @@
         </Setter>
         <Setter Property="Background" Value="{x:Null}" />
     </Style>
+    <Style xmlns:windowsShell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework" x:Key="BorderlessWindowStyle" TargetType="Window">
+        <Setter Property="windowsShell:WindowChrome.WindowChrome">
+            <Setter.Value>
+                <windowsShell:WindowChrome ResizeBorderThickness="0" CaptionHeight="0" CornerRadius="0" GlassFrameThickness="0,0,1,1"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
 </ResourceDictionary>

@@ -16,7 +16,7 @@ With a different color
 
 ## Import
 
-We are Strongly recommand you to use Nuget to import the package.
+We are strongly recommend you to use Nuget to import the package.
 Start this command in Package Manage Console:
 ```
 PM> Install-Package ModernMessageBoxLib

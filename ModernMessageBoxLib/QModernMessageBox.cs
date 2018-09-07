@@ -40,6 +40,7 @@ namespace ModernMessageBoxLib
         /// <param name="icon">
         /// The icon to show
         /// </param>
+        /// <param name="playSound">play the system sound when the messageBox show</param>
         public static ModernMessageboxResult Show(string msg, string title, QModernMessageBoxButtons btns,
                                                  ModernMessageboxIcons icon = ModernMessageboxIcons.None,bool playSound = true)
         {

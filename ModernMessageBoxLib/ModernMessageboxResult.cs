@@ -1,5 +1,8 @@
 ﻿namespace ModernMessageBoxLib
 {
+    /// <summary>
+    /// Define the button result of the ModernMessageBox
+    /// </summary>
     public enum ModernMessageboxResult
     {
         /// <summary>

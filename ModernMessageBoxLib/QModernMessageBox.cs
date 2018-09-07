@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media;
-using ModernMessageBoxLib.Properties;
 
 namespace ModernMessageBoxLib
 {
@@ -45,11 +41,11 @@ namespace ModernMessageBoxLib
         /// The icon to show
         /// </param>
         public static ModernMessageboxResult Show(string msg, string title, QModernMessageBoxButtons btns,
-                                                 ModernMessageboxIcons icon = ModernMessageboxIcons.None)
+                                                 ModernMessageboxIcons icon = ModernMessageboxIcons.None,bool playSound = true)
         {
             var msgBox = new ModernMessageBox(msg, title, icon) {
                 Background = GlobalBackground,
-                Foreground = GlobalForeground
+                Foreground = GlobalForeground,
             };
             switch (btns) {
                 case QModernMessageBoxButtons.Ok:
@@ -187,12 +183,33 @@ namespace ModernMessageBoxLib
     /// </summary>
     public class QMetroMessageLang
     {
+        /// <summary>
+        /// get or set the display of the OK button
+        /// </summary>
         public string Ok { get; set; } = "OK";
+        /// <summary>
+        /// get or set the display of the Cancel button
+        /// </summary>
         public string Cancel { get; set; } = "Cancel";
+        /// <summary>
+        /// get or set the display of the Yes button
+        /// </summary>
         public string Yes { get; set; } = "Yes";
+        /// <summary>
+        /// get or set the display of the No button
+        /// </summary>
         public string No { get; set; } = "No";
+        /// <summary>
+        /// get or set the display of the Ignore button
+        /// </summary>
         public string Ignore { get; set; } = "Ignore";
+        /// <summary>
+        /// get or set the display of the Retry button
+        /// </summary>
         public string Retry { get; set; } = "Retry";
+        /// <summary>
+        /// get or set the display of the Abort button
+        /// </summary>
         public string Abort { get; set; } = "Abort";
     }
 }

@@ -10,6 +10,7 @@ namespace ModernMessageBoxLib
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            // ReSharper disable once PossibleNullReferenceException
             var tmp = (ModernMessageboxButtonStatus)value;
             if (targetType == typeof(Visibility)) {
                 return tmp == ModernMessageboxButtonStatus.Invisibled ? Visibility.Collapsed : Visibility.Visible;

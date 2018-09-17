@@ -15,7 +15,7 @@ namespace ModernMessageBoxLib
         /// Get or set the default background of IndeterminateProgressWindow.
         /// Transparent is allowed.
         /// </summary>
-        public static Brush GlobalUiBackground { get; set; } = new SolidColorBrush(Colors.Black) { Opacity = 0.6 };
+        public static Brush GlobalBackground { get; set; } = new SolidColorBrush(Colors.Black) { Opacity = 0.6 };
         /// <summary>
         /// Get or set the default foreground of IndeterminateProgressWindow
         /// </summary>
@@ -56,7 +56,7 @@ namespace ModernMessageBoxLib
         public IndeterminateProgressWindow()
         {
             InitializeComponent();
-            Background = GlobalUiBackground;
+            Background = GlobalBackground;
             Foreground = GlobalForeground;
         }
 
@@ -67,7 +67,7 @@ namespace ModernMessageBoxLib
         public IndeterminateProgressWindow(object message)
         {
             InitializeComponent();
-            Background = GlobalUiBackground;
+            Background = GlobalBackground;
             Foreground = GlobalForeground;
             Message = message;
         }

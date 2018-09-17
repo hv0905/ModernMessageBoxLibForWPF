@@ -5,21 +5,21 @@ By using ModernMessageBoxLib, you can create a ModernMessageBox with a single co
 
  - [x] Basic MessageBox
  - [ ] Input Window
- - [ ] Waiting window
+ - [x] Waiting window
  - [ ] Color Picker
 
 ## Screenshots
-Common usage
+### ModernMessageBox
 
 ![sc1](https://github.com/hv0905/ModernMessageBoxLibForWPF/raw/master/web/sc1.png)
 
-Customize
-
 ![sc2](https://github.com/hv0905/ModernMessageBoxLibForWPF/raw/master/web/sc2.png)
 
-With a different color
-
 ![sc3](https://github.com/hv0905/ModernMessageBoxLibForWPF/raw/master/web/sc3.png)
+
+### IndeterminateProgressWindow
+
+![sc4](https://github.com/hv0905/ModernMessageBoxLibForWPF/raw/master/web/sc4.png)
 
 ## Import
 
@@ -33,6 +33,8 @@ _(See more in [Nuget](https://www.nuget.org/packages/ModernMessageBoxLib/))_
 Or you can download it on Release Page.
 
 ## Get Started
+
+### ModernMessageBox
 
 Before start using, you should specify Language and Background and Foreground.
 See
@@ -94,7 +96,29 @@ Customize:
             msg.ShowDialog();
 ```
 
+### IndeterminateProgressWindow
+Before start using, you should specify Background and Foreground.
+See:
+
+* _IndeterminateProgressWindow.GlobalBackground_
+
+* _IndeterminateProgressWindow.GlobalForeground_
+
+Usage:
+```C#
+    var win = new IndeterminateProgressWindow("Please wait while we are installing the virus into your computer. . .");
+	win.Show();
+	//Do Some Staff
+	await Task.Delay(5000);
+	//Change the message the 2nd time
+	win.Message = "Done!!!";
+	win.Close();
+```
+
+
 See more in the XML document comment.
 
+# About
 
+Using this library means you agree the MIT Licence.
 Build with ❤ By Saber0905 in SakuraTrak Studio

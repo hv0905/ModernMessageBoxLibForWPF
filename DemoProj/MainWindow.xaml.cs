@@ -58,12 +58,13 @@ namespace DemoProj
 
         private async void ButtonBase_OnClick_3(object sender, RoutedEventArgs e)
         {
-            var wab = new IndeterminateProgressWindow();
-            wab.Message = "dsdsfsdfsdfsd";
-            wab.Show();
-            await Task.Delay(3000);
-            wab.Message = "Done!!!";
-            //wab.Close();
+            var win = new IndeterminateProgressWindow("Please wait while we are installing the virus into your computer. . .");
+            win.Show();
+            //Do Some Staff
+            await Task.Delay(5000);
+            //Change the message the 2nd time
+            win.Message = "Done!!!";
+            win.Close();
 
         }
     }

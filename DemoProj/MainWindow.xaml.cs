@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -15,7 +16,17 @@ namespace DemoProj
         public MainWindow()
         {
             InitializeComponent();
-            
+            QModernMessageBox.MainLang = new QMetroMessageLang() {
+                Ok = "确定",
+                Cancel = "取消",
+                Abort = "中止(A)",
+                Ignore = "忽略(I)",
+                No = "否(N)",
+                Yes = "是(Y)",
+                Retry = "重试(R)"
+            };
+            QModernMessageBox.GlobalBackground = new SolidColorBrush(Colors.White){Opacity = 0.6};
+            QModernMessageBox.GlobalForeground = Brushes.Black;
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
@@ -43,6 +54,17 @@ namespace DemoProj
         {
             System.Windows.Forms.MessageBox.Show("fdsfdsfsdf", "dfdsfsdfsd", MessageBoxButtons.AbortRetryIgnore,
                 MessageBoxIcon.Error);
+        }
+
+        private async void ButtonBase_OnClick_3(object sender, RoutedEventArgs e)
+        {
+            var wab = new IndeterminateProgressWindow();
+            wab.Message = "dsdsfsdfsdfsd";
+            wab.Show();
+            await Task.Delay(3000);
+            wab.Message = "Done!!!";
+            //wab.Close();
+
         }
     }
 }

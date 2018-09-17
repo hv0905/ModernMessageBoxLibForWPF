@@ -30,6 +30,14 @@ namespace ModernMessageBoxLib
         public static Brush GlobalForeground { get; set; } = Brushes.White;
 
         /// <summary>
+        /// Specify if the window will get a blur background in win10.
+        /// To enable this feature, pls make sure your Background prop is not solid.
+        /// Set this value to false if u don't need this feature.
+        /// The default value is true.
+        /// </summary>
+        public static bool GlobalEnableWindowBlur { get; set; } = true;
+
+        /// <summary>
         /// Create and show a Modern Messagebox
         /// </summary>
         /// <param name="msg">Message</param>

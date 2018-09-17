@@ -19,24 +19,6 @@
             </ResourceDictionary.MergedDictionaries>
             <local:ModernMessageboxButtonStatusConverter x:Key="modernMessageboxButtonStatusConverter" />
             <local:ColorOpticityConverter x:Key="colorOpticityConverter" />
-            <!--            <Storyboard x:Key="CloseStory" Completed="CloseStory_OnCompleted">-->
-            <!--                <DoubleAnimation Storyboard.TargetName="gridMain_Scale" Duration="0:0:0.2"-->
-            <!--                                 Storyboard.TargetProperty="ScaleX" From="1" To="0.8" />-->
-            <!--                <DoubleAnimation Storyboard.TargetName="gridMain_Scale" Duration="0:0:0.2"-->
-            <!--                                 Storyboard.TargetProperty="ScaleY" From="1" To="0.8" />-->
-            <!--                <DoubleAnimation Storyboard.TargetName="main" Duration="0:0:0.2" Storyboard.TargetProperty="Opacity"-->
-            <!--                                 From="1" To="0" />-->
-            <!--            </Storyboard>-->
-            <!--            <Storyboard x:Key="OpenStory">-->
-            <!--                <DoubleAnimation Storyboard.TargetName="gridMain_Scale" Duration="0:0:0.2"-->
-            <!--                                 Storyboard.TargetProperty="ScaleX" From="0.8" To="1" />-->
-            <!--                ~1~缩小@1@-->
-            <!--                <DoubleAnimation Storyboard.TargetName="gridMain_Scale" Duration="0:0:0.2"-->
-            <!--                                 Storyboard.TargetProperty="ScaleY" From="0.8" To="1" />-->
-            <!--                <DoubleAnimation Storyboard.TargetName="main" Duration="0:0:0.2" Storyboard.TargetProperty="Opacity"-->
-            <!--                                 From="0" To="1" />-->
-            <!--                ~1~淡出@1@-->
-            <!--            </Storyboard>-->
         </ResourceDictionary>
     </Window.Resources>
     <Grid>

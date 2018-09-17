@@ -1,11 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Media;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using ModernMessageBoxLib.Helper;
-using static System.Byte;
 
 namespace ModernMessageBoxLib
 {
@@ -14,11 +14,11 @@ namespace ModernMessageBoxLib
     /// </summary>
     public partial class ModernMessageBox
     {
-        /// <summary>
-        /// get the result of the ModernMessageBox
-        /// </summary>
-        public ModernMessageboxResult Result { get; private set; } = ModernMessageboxResult.Unknown;
+        #region Fields
 
+        private bool _enableKey;
+
+        #endregion
         #region DependencyProperty
 
         /// <summary>
@@ -271,16 +271,29 @@ namespace ModernMessageBoxLib
         /// </summary>
         public SystemSound SoundToPlay { get; set; }
 
+        /// <summary>
+        /// Specify if the window will get a blur background in win10.
+        /// To enable this feature, pls make sure your Background prop is not solid.
+        /// Set this value to false if u don't need this feature.
+        /// The default value is true.
+        /// </summary>
+        public bool EnableWindowBlur { get; set; }
+        /// <summary>
+        /// get the result of the ModernMessageBox
+        /// </summary>
+        public ModernMessageboxResult Result { get; private set; } = ModernMessageboxResult.Unknown;
+
         #endregion
 
         /// <summary>
-        /// Create a object of ModernMessageBox
+        /// Create an object of ModernMessageBox
         /// </summary>
         public ModernMessageBox()
         {
             InitializeComponent();
             Background = QModernMessageBox.GlobalBackground;
             Foreground = QModernMessageBox.GlobalForeground;
+            EnableWindowBlur = QModernMessageBox.GlobalEnableWindowBlur;
         }
 
         /// <summary>
@@ -293,13 +306,15 @@ namespace ModernMessageBoxLib
         /// <param name="button2Text">Content of the button2</param>
         /// <param name="button3Text">Content of the button3</param>
         /// <param name="soundToPlay">The system sound to play in the messageBox. If you leave it null, it will set to SoundFor(headIcon). if you want to play no sound, set SoundToPlay prop to null after construct</param>
-        public ModernMessageBox(string message, string title, ModernMessageboxIcons headIcon = ModernMessageboxIcons.None,
-                               string button1Text = null, string button2Text = null, string button3Text = null,SystemSound soundToPlay = null)
+        public ModernMessageBox(string message, string title,
+                                ModernMessageboxIcons headIcon = ModernMessageboxIcons.None, string button1Text = null,
+                                string button2Text = null, string button3Text = null, SystemSound soundToPlay = null)
         {
             InitializeComponent();
             SoundToPlay = soundToPlay ?? SoundFor(headIcon);
             Background = QModernMessageBox.GlobalBackground;
             Foreground = QModernMessageBox.GlobalForeground;
+            EnableWindowBlur = QModernMessageBox.GlobalEnableWindowBlur;
             Message = message;
             Title = title;
             HeadIcon = headIcon;
@@ -329,17 +344,17 @@ namespace ModernMessageBoxLib
 
         private void MetroMessageBox_OnClosing(object sender, CancelEventArgs e)
         {
-//            if (_exitAnimateDone) return;
-//            e.Cancel = true;
-//            var sb = (Storyboard)Resources["CloseStory"];
-//            sb.Begin();
+            //            if (_exitAnimateDone) return;
+            //            e.Cancel = true;
+            //            var sb = (Storyboard)Resources["CloseStory"];
+            //            sb.Begin();
         }
 
-//        private void CloseStory_OnCompleted(object sender, EventArgs e)
-//        {
-//            _exitAnimateDone = true;
-//            Close();
-//        }
+        //        private void CloseStory_OnCompleted(object sender, EventArgs e)
+        //        {
+        //            _exitAnimateDone = true;
+        //            Close();
+        //        }
 
         private void UIElement_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -366,13 +381,14 @@ namespace ModernMessageBoxLib
 
         private void MetroMessageBox_OnKeyUp(object sender, KeyEventArgs e)
         {
+            if (!_enableKey) return;
             if (e.Key == Button1Key && Button1Status == ModernMessageboxButtonStatus.Normal) {
                 ResultButton_Click(rbtn1, null);
             }
             else if (e.Key == Button2Key && Button2Status == ModernMessageboxButtonStatus.Normal) {
                 ResultButton_Click(rbtn2, null);
             }
-            else if (e.Key == Button3Key && Button3Status==ModernMessageboxButtonStatus.Normal) {
+            else if (e.Key == Button3Key && Button3Status == ModernMessageboxButtonStatus.Normal) {
                 ResultButton_Click(rbtn3, null);
             }
             else if (e.Key == CloseCaptionButtonKey && CloseCaptionButtonEnabled) {
@@ -382,18 +398,25 @@ namespace ModernMessageBoxLib
 
         #endregion
 
-        private void ModernMessageBox_OnLoaded(object sender, RoutedEventArgs e)
+        private async void ModernMessageBox_OnLoaded(object sender, RoutedEventArgs e)
         {
-            if (!WindowBlurBackgroundHelper.BlurWindow(this)) {
-                if (this.Background is SolidColorBrush scb) {
-                    var col = scb.Color;
-                    col.A = MaxValue;
-                    Background = new SolidColorBrush(col);
+            if ( !EnableWindowBlur || !WindowBlurBackgroundHelper.BlurWindow(this)) {
+                if (Background is SolidColorBrush scb) {
 
+                    var col = scb.Color;
+                    col.A = byte.MaxValue;
+                    Background = new SolidColorBrush(col);
                 }
+                Background.Opacity = 1;
             }
 
             SoundToPlay?.Play();
+
+            //Issue fix
+            //When user use Enter button to open a msgbox.
+            //The msgbox will close because the key event.
+            await Task.Delay(100);
+            _enableKey = true;
         }
 
 

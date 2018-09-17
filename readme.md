@@ -1,6 +1,13 @@
 # ModernMessageBoxLib
 ModernMessageBoxLib is a WPF library in .Net 4.5
 By using ModernMessageBoxLib, you can create a ModernMessageBox with a single code.
+## Todo list
+
+ - [x] Basic MessageBox
+ - [ ] Input Window
+ - [ ] Waiting window
+ - [ ] Color Picker
+
 ## Screenshots
 Common usage
 
@@ -17,7 +24,7 @@ With a different color
 ## Import
 
 We are strongly recommend you to use Nuget to import the package.
-Start this command in Package Manage Console:
+Run this command in Package Manage Console:
 ```
 PM> Install-Package ModernMessageBoxLib
 ```
@@ -56,6 +63,12 @@ Those setting will use as default in ModernMessageBox.
 > The default Background in MessageBox is Black, 60% Opacity and the Foreground is White
 > 
 > The default lang is in English
+
+> In background setting, you can use a color with not fully solid.
+> In this way, the window will have a Gaussian Blur background in Win10 1803+
+> In win7/8/8.1 or early version of win10, it will still use the solid color as background.
+> If you don't want a gaussian blur, just set the color solid.
+
 
 In common cases, you can create a MetroMessageBox with the following code
 ```C#

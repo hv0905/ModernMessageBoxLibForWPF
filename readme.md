@@ -4,7 +4,7 @@ By using ModernMessageBoxLib, you can create a ModernMessageBox with a single co
 ## Todo list
 
  - [x] Basic MessageBox
- - [ ] Input Window
+ - [x] Input Window
  - [x] Waiting window
  - [ ] Color Picker
 

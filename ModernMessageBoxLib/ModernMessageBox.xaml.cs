@@ -258,6 +258,10 @@ namespace ModernMessageBoxLib
             set => SetValue(TextBoxTextProperty, value);
         }
 
+        /// <summary>
+        /// Get or set the Visibility of the textbox
+        /// The default is <see cref="Visibility.Collapsed"/>
+        /// </summary>
         public static readonly DependencyProperty TextBoxVisibilityProperty = DependencyProperty.Register("TextBoxVisibility", typeof(Visibility), typeof(ModernMessageBox), new PropertyMetadata(Visibility.Collapsed));
 
         /// <summary>

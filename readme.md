@@ -1,6 +1,11 @@
 # ModernMessageBoxLib
 ModernMessageBoxLib is a WPF library in .Net 4.5
 By using ModernMessageBoxLib, you can create a ModernMessageBox with a single code.
+
+[![NuGet](https://img.shields.io/nuget/v/ModernMessageBoxLib.svg)](https://www.nuget.org/packages/ModernMessageBoxLib/)
+[![NuGet](https://img.shields.io/nuget/dt/ModernMessageBoxLib.svg)](https://www.nuget.org/packages/ModernMessageBoxLib/)
+![by](https://img.shields.io/badge/By-SakuraTrak%20Studio-blue.svg)
+
 ## Todo list
 
  - [x] Basic MessageBox

@@ -91,7 +91,7 @@ Customize:
         Button3Key = Key.D3,
         CheckboxText = "Don't show this again",
         CheckboxVisibility = Visibility.Visible,
-        TextBoxText = "fsdfdsfsd",
+        TextBoxText = "some staff",
         TextBoxVisibility = Visibility.Visible,
     };
             

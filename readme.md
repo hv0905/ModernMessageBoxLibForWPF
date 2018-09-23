@@ -4,7 +4,7 @@ By using ModernMessageBoxLib, you can create a ModernMessageBox with a single co
 
 [![NuGet](https://img.shields.io/nuget/v/ModernMessageBoxLib.svg)](https://www.nuget.org/packages/ModernMessageBoxLib/)
 [![NuGet](https://img.shields.io/nuget/dt/ModernMessageBoxLib.svg)](https://www.nuget.org/packages/ModernMessageBoxLib/)
-![by](https://img.shields.io/badge/By-SakuraTrak%20Studio-blue.svg)
+[![by](https://img.shields.io/badge/By-SakuraTrak%20Studio-blue.svg)](https://www.nuget.org/packages/ModernMessageBoxLib/)
 
 ## Todo list
 

@@ -93,6 +93,21 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="TextBox" x:Key="messageTextBox">
+        <Setter Property="Background" Value="Black" />
+        <Setter Property="Foreground" Value="White" />
+        
+        <Setter Property="Template">
+            <Setter.Value>
+            <ControlTemplate TargetType="TextBox" >
+                <Border x:Name="bdMain" BorderBrush="{TemplateBinding Foreground}" BorderThickness="3">
+                    <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" HorizontalAlignment="Stretch" Background="{x:Null}" Foreground="{TemplateBinding Foreground}"/>
+                </Border>
+            </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <Style TargetType="{x:Type Button}" x:Key="captionButtonStyle">
         <Setter Property="Template">
             <Setter.Value>
@@ -170,7 +185,7 @@
         <Setter Property="Content">
             <Setter.Value>
                 <Canvas Width="24" Height="24">
-                    <Path Data="{StaticResource icoClose}" Fill="#c0392b"/>
+                    <Path Data="{StaticResource icoClose}" Fill="#c0392b" />
                 </Canvas>
             </Setter.Value>
         </Setter>
@@ -211,7 +226,7 @@
                             </Ellipse.Fill>
                         </Ellipse>
                         <Ellipse x:Name="eclOverlay" Grid.Row="0" Grid.Column="0" Width="20" Height="20"
-                                 Margin="{Binding Margin, ElementName=eclBtn}" Opacity="0" >
+                                 Margin="{Binding Margin, ElementName=eclBtn}" Opacity="0">
                             <Ellipse.Fill>
                                 <SolidColorBrush Color="Black" />
                             </Ellipse.Fill>
@@ -275,10 +290,12 @@
         </Setter>
         <Setter Property="Background" Value="{x:Null}" />
     </Style>
-    <Style xmlns:windowsShell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework" x:Key="BorderlessWindowStyle" TargetType="Window">
+    <Style xmlns:windowsShell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+           x:Key="BorderlessWindowStyle" TargetType="Window">
         <Setter Property="windowsShell:WindowChrome.WindowChrome">
             <Setter.Value>
-                <windowsShell:WindowChrome ResizeBorderThickness="0" CaptionHeight="0" CornerRadius="0" GlassFrameThickness="0,0,1,1"/>
+                <windowsShell:WindowChrome ResizeBorderThickness="0" CaptionHeight="0" CornerRadius="0"
+                                           GlassFrameThickness="0,0,1,1" />
             </Setter.Value>
         </Setter>
     </Style>

@@ -179,6 +179,7 @@ namespace ModernMessageBoxLib
 
         /// <summary>
         /// control the IsEnabled attr of the close button
+        /// The default value is True
         /// </summary>
         public static readonly DependencyProperty CloseCaptionButtonEnabledProperty =
             DependencyProperty.Register("CloseCaptionButtonEnabled", typeof(bool), typeof(ModernMessageBox),
@@ -194,14 +195,16 @@ namespace ModernMessageBoxLib
         }
 
         /// <summary>
-        /// control the Visibility of the checkbox
+        /// Get or set the Visibility of the checkbox
+        /// the default value is <see cref="Visibility.Collapsed"/>
         /// </summary>
         public static readonly DependencyProperty CheckboxVisibilityProperty =
             DependencyProperty.Register("CheckboxVisibility", typeof(Visibility), typeof(ModernMessageBox),
                 new PropertyMetadata(Visibility.Collapsed));
 
         /// <summary>
-        /// control the Visibility of the checkbox
+        /// Get or set the Visibility of the checkbox
+        /// the default value is <see cref="Visibility.Collapsed"/>
         /// </summary>
         public Visibility CheckboxVisibility
         {
@@ -210,13 +213,13 @@ namespace ModernMessageBoxLib
         }
 
         /// <summary>
-        /// The text to display on the checkbox
+        /// Get or set the text to display on the checkbox
         /// </summary>
         public static readonly DependencyProperty CheckboxTextProperty = DependencyProperty.Register("CheckboxText",
             typeof(string), typeof(ModernMessageBox), new PropertyMetadata(string.Empty));
 
         /// <summary>
-        /// The text to display on the checkbox
+        /// Get or set the text to display on the checkbox
         /// </summary>
         public string CheckboxText
         {
@@ -233,11 +236,38 @@ namespace ModernMessageBoxLib
 
         /// <summary>
         /// Get or set the IsChecked attr of the checkbox
+        /// The default value is false
         /// </summary>
         public bool? CheckboxChecked
         {
             get => (bool)GetValue(CheckboxCheckedProperty);
             set => SetValue(CheckboxCheckedProperty, value);
+        }
+
+        /// <summary>
+        /// Get or set the text of the textbox inside the MessageBox.
+        /// </summary>
+        public static readonly DependencyProperty TextBoxTextProperty = DependencyProperty.Register("TextBoxText", typeof(string), typeof(ModernMessageBox), new PropertyMetadata(default(string)));
+
+        /// <summary>
+        /// Get or set the text of the textbox inside the MessageBox.
+        /// </summary>
+        public string TextBoxText
+        {
+            get => (string)GetValue(TextBoxTextProperty);
+            set => SetValue(TextBoxTextProperty, value);
+        }
+
+        public static readonly DependencyProperty TextBoxVisibilityProperty = DependencyProperty.Register("TextBoxVisibility", typeof(Visibility), typeof(ModernMessageBox), new PropertyMetadata(Visibility.Collapsed));
+
+        /// <summary>
+        /// Get or set the Visibility of the textbox
+        /// The default is <see cref="Visibility.Collapsed"/>
+        /// </summary>
+        public Visibility TextBoxVisibility
+        {
+            get => (Visibility)GetValue(TextBoxVisibilityProperty);
+            set => SetValue(TextBoxVisibilityProperty, value);
         }
 
         #endregion
@@ -382,6 +412,7 @@ namespace ModernMessageBoxLib
         private void MetroMessageBox_OnKeyUp(object sender, KeyEventArgs e)
         {
             if (!_enableKey) return;
+            if (mainTextBox.IsKeyboardFocused) return;//inputing...
             if (e.Key == Button1Key && Button1Status == ModernMessageboxButtonStatus.Normal) {
                 ResultButton_Click(rbtn1, null);
             }

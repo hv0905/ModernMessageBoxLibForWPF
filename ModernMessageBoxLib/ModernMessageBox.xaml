@@ -36,14 +36,15 @@
         <Grid Grid.Row="1" Margin="30,2,10,2">
             <Grid.RowDefinitions>
                 <RowDefinition />
-                <RowDefinition Height="30" />
+                <RowDefinition Height="Auto" /><!--Textbox-->
+                <RowDefinition Height="Auto" /><!--CheckBox-->
                 <RowDefinition Height="40" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition x:Name="iconPlace" Width="0" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <DockPanel Grid.Row="2" Grid.ColumnSpan="2">
+            <DockPanel Grid.Row="3" Grid.ColumnSpan="2">
                 <Button x:Name="rbtn3" DockPanel.Dock="Right" Margin="5,2,5,2" Style="{StaticResource Win8UWPBtn}"
                         MinWidth="100" FontSize="16" Click="ResultButton_Click"
                         Content="{Binding Button3Text, ElementName=main}"
@@ -65,8 +66,15 @@
                         IsEnabled="{Binding Button1Status, ElementName=main,Converter={StaticResource modernMessageboxButtonStatusConverter}}" />
                 <Rectangle />
             </DockPanel>
-            <CheckBox Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" Style="{StaticResource SwitchCheckbox}"
-                      Content="{Binding CheckboxText, ElementName=main}" Foreground="{Binding Foreground, ElementName=main}" FontSize="16"
+            <TextBox x:Name="mainTextBox" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" FontSize="16" Margin="5,10,5,5" Height="35"
+                     Style="{StaticResource messageTextBox}" Text="{Binding TextBoxText, ElementName=main}"
+                     Foreground="{Binding Foreground, ElementName=main}"
+                     Background="{Binding Background, ElementName=main}"
+                     Visibility="{Binding TextBoxVisibility, ElementName=main}" />
+            <CheckBox Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Style="{StaticResource SwitchCheckbox}"
+                      Height="30"
+                      Content="{Binding CheckboxText, ElementName=main}"
+                      Foreground="{Binding Foreground, ElementName=main}" FontSize="16"
                       Visibility="{Binding CheckboxVisibility, ElementName=main}"
                       IsChecked="{Binding CheckboxChecked, ElementName=main}" />
             <Canvas x:Name="img_HeadIcon" Grid.Row="0" Grid.Column="0" Width="72" Height="72"

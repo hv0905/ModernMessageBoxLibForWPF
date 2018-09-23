@@ -66,12 +66,12 @@
                         IsEnabled="{Binding Button1Status, ElementName=main,Converter={StaticResource modernMessageboxButtonStatusConverter}}" />
                 <Rectangle />
             </DockPanel>
-            <TextBox x:Name="mainTextBox" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" FontSize="16" Margin="5,10,5,5" Height="35"
+            <TextBox x:Name="mainTextBox" x:FieldModifier="public" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" FontSize="16" Margin="5,10,5,5" Height="35"
                      Style="{StaticResource messageTextBox}" Text="{Binding TextBoxText, ElementName=main}"
                      Foreground="{Binding Foreground, ElementName=main}"
                      Background="{Binding Background, ElementName=main}"
                      Visibility="{Binding TextBoxVisibility, ElementName=main}" />
-            <CheckBox Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Style="{StaticResource SwitchCheckbox}"
+            <CheckBox x:Name="mainCheckBox" x:FieldModifier="public" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Style="{StaticResource SwitchCheckbox}"
                       Height="30"
                       Content="{Binding CheckboxText, ElementName=main}"
                       Foreground="{Binding Foreground, ElementName=main}" FontSize="16"

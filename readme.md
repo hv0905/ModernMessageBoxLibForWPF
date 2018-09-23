@@ -84,16 +84,18 @@ QModernMessageBox.Warning("The quick brown fox jumps over the lazy dog.", "hello
 
 Customize:
 ```C#
-                var msg = new ModernMessageBox("The quick brown fox jumps over the lazy dog.\n", "hello world", ModernMessageboxIcons.Info, "CSharp", "Java",
-                "Python") {
-                Button1Key = Key.D1,
-                Button2Key = Key.D2,
-                Button3Key = Key.D3,
-                CheckboxText = "Don't show this again",
-                CheckboxVisibility = Visibility.Visible
-            };
+    var msg = new ModernMessageBox("The quick brown fox jumps over the lazy dog.\n", "hello world", ModernMessageboxIcons.Info, "CSharp", "Java",
+        "Python") {
+        Button1Key = Key.D1,
+        Button2Key = Key.D2,
+        Button3Key = Key.D3,
+        CheckboxText = "Don't show this again",
+        CheckboxVisibility = Visibility.Visible,
+        TextBoxText = "fsdfdsfsd",
+        TextBoxVisibility = Visibility.Visible,
+    };
             
-            msg.ShowDialog();
+    msg.ShowDialog();
 ```
 
 ### IndeterminateProgressWindow

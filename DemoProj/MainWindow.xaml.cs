@@ -25,8 +25,8 @@ namespace DemoProj
                 Yes = "是(Y)",
                 Retry = "重试(R)"
             };
-            // QModernMessageBox.GlobalBackground = new SolidColorBrush(Colors.White){Opacity = 0.6};
-            // QModernMessageBox.GlobalForeground = Brushes.Black;
+            QModernMessageBox.GlobalBackground = new SolidColorBrush(Colors.White){Opacity = 0.6};
+            QModernMessageBox.GlobalForeground = Brushes.Black;
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
@@ -38,7 +38,7 @@ namespace DemoProj
                 Button3Key = Key.D3,
                 CheckboxText = "Don't show this again",
                 CheckboxVisibility = Visibility.Visible,
-                TextBoxText = "fsdfdsfsd",
+                TextBoxText = "some staff",
                 TextBoxVisibility = Visibility.Visible,
             };
             

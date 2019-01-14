@@ -11,6 +11,11 @@ namespace ModernMessageBoxLib
     public static class QModernMessageBox
     {
         /// <summary>
+        /// Get or set the owner of the MessageBoxWindow
+        /// </summary>
+        public static System.Windows.Window ParentWindow { get; set; }
+
+        /// <summary>
         /// Get or set the text of the buttons
         /// The default value is in English. If you want other language, you should specify them manully
         /// </summary>
@@ -56,6 +61,7 @@ namespace ModernMessageBoxLib
                 Background = GlobalBackground,
                 Foreground = GlobalForeground,
             };
+            msgBox.Owner = ParentWindow;
             switch (btns) {
                 case QModernMessageBoxButtons.Ok:
                     msgBox.Button1Text = MainLang.Ok;

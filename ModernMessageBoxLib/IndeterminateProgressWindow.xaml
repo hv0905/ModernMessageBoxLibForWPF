@@ -1,0 +1,40 @@
+﻿<Window x:Class="ModernMessageBoxLib.IndeterminateProgressWindow" x:Name="main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ModernMessageBoxLib" ShowInTaskbar="False" Topmost="True"
+        WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight"
+        mc:Ignorable="d" AllowsTransparency="True"
+        Title="Wait" WindowStyle="None" Closing="Window_Closing">
+    <Window.Template>
+        <ControlTemplate TargetType="Window">
+            <ContentPresenter Content="{TemplateBinding Content}"/>
+        </ControlTemplate>
+    </Window.Template>
+    <Window.Resources>
+        <Storyboard x:Key="CloseStory" Completed="Storyboard_Completed">
+            <DoubleAnimation To="0" Duration="0:0:0.3" Storyboard.TargetName="bdMain"
+                             Storyboard.TargetProperty="Opacity" />
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Rectangle.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation From="0" To="1" Duration="0:0:0.3" Storyboard.TargetProperty="Opacity"
+                                     Storyboard.TargetName="bdMain" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+    <Border VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="{Binding CornerRadius, ElementName=main}" Background="{Binding Background, ElementName=main}" x:Name="bdMain" Opacity="0">
+        <StackPanel Orientation="Horizontal">
+            <local:ProcessRing VerticalAlignment="Center" HorizontalAlignment="Center"
+                               Foreground="{Binding Foreground,ElementName=main}" />
+            <Label x:Name="notice" Content="{Binding Message, ElementName=main}"
+                   Foreground="{Binding Foreground, ElementName=main}" FontSize="16" VerticalAlignment="Center"
+                   HorizontalAlignment="Left" />
+        </StackPanel>
+    </Border>
+</Window>

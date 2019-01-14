@@ -1,0 +1,303 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ModernMessageBoxLib">
+
+    <Geometry x:Key="icoWarning">M12,2L1,21H23M12,6L19.53,19H4.47M11,10V14H13V10M11,16V18H13V16</Geometry>
+    <Geometry x:Key="icoCheck">M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z</Geometry>
+    <Geometry x:Key="icoError">M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M14.59,8L12,10.59L9.41,8L8,9.41L10.59,12L8,14.59L9.41,16L12,13.41L14.59,16L16,14.59L13.41,12L16,9.41L14.59,8Z</Geometry>
+    <Geometry x:Key="icoHelp">M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z</Geometry>
+    <Geometry x:Key="icoInfo">M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z</Geometry>
+    <Geometry x:Key="icoClose">M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z</Geometry>
+    <Style TargetType="Button" x:Key="Win8UWPBtn">
+        <Setter Property="Background" Value="Black" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid x:Name="gridMain">
+                        <Border x:Name="bd" BorderBrush="{TemplateBinding Foreground}" BorderThickness="3">
+                            <Border.Background>
+                                <SolidColorBrush x:Name="bdBg" Color="White" Opacity="0" />
+                            </Border.Background>
+                        </Border>
+                        <Rectangle x:Name="clickBg" Opacity="0" Fill="{TemplateBinding Foreground}" />
+                        <Label x:Name="txtNormal" Content="{TemplateBinding Content}"
+                               Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Center"
+                               VerticalAlignment="Center" Opacity="1" />
+                        <Label x:Name="txtClicked" Content="{TemplateBinding Content}"
+                               Foreground="{TemplateBinding Background}" HorizontalAlignment="Center"
+                               VerticalAlignment="Center" Opacity="0" />
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="gridMain"
+                                                         Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.2" />
+                                        <DoubleAnimation Storyboard.TargetName="bdBg"
+                                                         Storyboard.TargetProperty="Opacity" To="0"
+                                                         Duration="0:0:0.1" />
+                                        <DoubleAnimation Storyboard.TargetName="clickBg"
+                                                         Storyboard.TargetProperty="Opacity" To="0"
+                                                         Duration="0:0:0.01" />
+                                        <DoubleAnimation Storyboard.TargetName="txtNormal"
+                                                         Storyboard.TargetProperty="Opacity" To="1"
+                                                         Duration="0:0:0.01" />
+                                        <DoubleAnimation Storyboard.TargetName="txtClicked"
+                                                         Storyboard.TargetProperty="Opacity" To="0"
+                                                         Duration="0:0:0.01" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="bdBg"
+                                                         Storyboard.TargetProperty="Opacity" To="0.2"
+                                                         Duration="0:0:0.01" />
+                                        <DoubleAnimation Storyboard.TargetName="clickBg"
+                                                         Storyboard.TargetProperty="Opacity" To="1"
+                                                         Duration="0:0:0.01" />
+                                        <DoubleAnimation Storyboard.TargetName="txtNormal"
+                                                         Storyboard.TargetProperty="Opacity" To="0"
+                                                         Duration="0:0:0.01" />
+                                        <DoubleAnimation Storyboard.TargetName="txtClicked"
+                                                         Storyboard.TargetProperty="Opacity" To="1"
+                                                         Duration="0:0:0.01" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="bdBg"
+                                                         Storyboard.TargetProperty="Opacity" To="0.2"
+                                                         Duration="0:0:0.1" />
+                                        <DoubleAnimation Storyboard.TargetName="clickBg"
+                                                         Storyboard.TargetProperty="Opacity" To="0"
+                                                         Duration="0:0:0.01" />
+                                        <DoubleAnimation Storyboard.TargetName="txtNormal"
+                                                         Storyboard.TargetProperty="Opacity" To="1"
+                                                         Duration="0:0:0.01" />
+                                        <DoubleAnimation Storyboard.TargetName="txtClicked"
+                                                         Storyboard.TargetProperty="Opacity" To="0"
+                                                         Duration="0:0:0.01" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="gridMain"
+                                                         Storyboard.TargetProperty="Opacity" To="0.35"
+                                                         Duration="0:0:0.2" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="TextBox" x:Key="messageTextBox">
+        <Setter Property="Background" Value="Black" />
+        <Setter Property="Foreground" Value="White" />
+        
+        <Setter Property="Template">
+            <Setter.Value>
+            <ControlTemplate TargetType="TextBox" >
+                <Border x:Name="bdMain" BorderBrush="{TemplateBinding Foreground}" BorderThickness="3">
+                    <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" HorizontalAlignment="Stretch" Background="{x:Null}" Foreground="{TemplateBinding Foreground}"/>
+                </Border>
+            </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type Button}" x:Key="captionButtonStyle">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ct"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Duration="0" To="1" />
+                                        <DoubleAnimation Storyboard.TargetName="back"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Duration="0:0:0.3" To="0" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="back"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Duration="0:0:0.3" To="0.75" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="MouseDown">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="back"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Duration="0:0:0.3" To="1" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="back"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Duration="0"
+                                                         To="1" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ct"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Duration="0" To="0.5" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="ValidationStates">
+                                <VisualState x:Name="InvalidFocused" />
+                                <VisualState x:Name="InvalidUnfocused" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Border x:Name="back" Background="{TemplateBinding Background}" CornerRadius="0" Opacity="0"
+                                RenderTransformOrigin="0.5,0.5" />
+                        <ContentPresenter x:Name="ct" Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Margin="{TemplateBinding Padding}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Padding" Value="3" />
+        <Setter Property="Background" Value="{x:Null}" />
+    </Style>
+
+    <Style x:Key="closeCaptionButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource captionButtonStyle}">
+        <Setter Property="Content">
+            <Setter.Value>
+                <Canvas Width="24" Height="24">
+                    <Path Data="{StaticResource icoClose}" Fill="#c0392b" />
+                </Canvas>
+            </Setter.Value>
+        </Setter>
+        <!---->
+        <Setter Property="Foreground" Value="#c0392b" />
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Color="#FFEA1E1E" Offset="0" />
+                    <GradientStop Color="#CCF5544C" Offset="0.7" />
+                    <GradientStop Offset="1" Color="#33F94949" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SwitchCheckbox" TargetType="{x:Type CheckBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="35" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Margin="4,0,0,0" Content="{TemplateBinding Content}" Grid.RowSpan="2"
+                                        Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                        Foreground="{TemplateBinding Foreground}" />
+                        <Border x:Name="backBorder" Grid.Row="0" Grid.Column="0" CornerRadius="5" BorderThickness="0"
+                                Height="12">
+                            <Border.Background>
+                                <SolidColorBrush Color="#999999" />
+                            </Border.Background>
+                        </Border>
+                        <Ellipse x:Name="eclBtn" Grid.Row="0" Grid.Column="0" Width="20" Height="20" Margin="0,0,15,0">
+                            <Ellipse.Fill>
+                                <SolidColorBrush Color="White" />
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <Ellipse x:Name="eclOverlay" Grid.Row="0" Grid.Column="0" Width="20" Height="20"
+                                 Margin="{Binding Margin, ElementName=eclBtn}" Opacity="0">
+                            <Ellipse.Fill>
+                                <SolidColorBrush Color="Black" />
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="eclOverlay"
+                                                         Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.1" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="eclOverlay"
+                                                         Storyboard.TargetProperty="Opacity" To="0.3"
+                                                         Duration="0:0:0.1" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="eclOverlay"
+                                                         Storyboard.TargetProperty="Opacity" To="0.4"
+                                                         Duration="0:0:0.1" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CheckStates">
+                                <VisualState x:Name="Checked">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="backBorder"
+                                                        Storyboard.TargetProperty="Background.Color" To="#B3CEFB"
+                                                        Duration="0:0:0.15" />
+                                        <ColorAnimation Storyboard.TargetName="eclBtn"
+                                                        Storyboard.TargetProperty="Fill.Color" To="#4285F4"
+                                                        Duration="0:0:0.15" />
+                                        <ThicknessAnimation Storyboard.TargetName="eclBtn"
+                                                            Storyboard.TargetProperty="Margin" To="15,0,0,0"
+                                                            Duration="0:0:0.15" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unchecked">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="backBorder"
+                                                        Storyboard.TargetProperty="Background.Color" To="#999999"
+                                                        Duration="0:0:0.15" />
+                                        <ColorAnimation Storyboard.TargetName="eclBtn"
+                                                        Storyboard.TargetProperty="Fill.Color" To="White"
+                                                        Duration="0:0:0.15" />
+                                        <ThicknessAnimation Storyboard.TargetName="eclBtn"
+                                                            Storyboard.TargetProperty="Margin" To="0,0,15,0"
+                                                            Duration="0:0:0.15" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Background" Value="{x:Null}" />
+    </Style>
+    <Style xmlns:windowsShell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+           x:Key="BorderlessWindowStyle" TargetType="Window">
+        <Setter Property="windowsShell:WindowChrome.WindowChrome">
+            <Setter.Value>
+                <windowsShell:WindowChrome ResizeBorderThickness="0" CaptionHeight="0" CornerRadius="0"
+                                           GlassFrameThickness="0,0,1,1" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>Modern MessageBox For WPF by SakuraTrak Studio</title>
+    <authors>Saber0905</authors>
+    <owners>Saber0905</owners>
+    <projectUrl>https://github.com/hv0905/ModernMessageBoxLibForWPF</projectUrl>
+
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Create and show a Modern MessageBox with a single code.</description>
+    <releaseNotes>Publish ModernMessageBoxLib.</releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags>C# .net WPF Modern VB.Net MessageBox Message Box MsgBox</tags>
+
+  </metadata>
+</package>

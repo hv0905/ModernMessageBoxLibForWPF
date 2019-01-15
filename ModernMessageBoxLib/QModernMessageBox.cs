@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -6,10 +7,15 @@ namespace ModernMessageBoxLib
 {
     /// <summary>
     /// Common usage of ModernMessageBox,
-    /// Just like using <see cref="System.Windows.MessageBox"/> in WPF or using QMessageBox in QT
+    /// Just like using <see cref="MessageBox"/> in WPF or using QMessageBox in QT
     /// </summary>
     public static class QModernMessageBox
     {
+        /// <summary>
+        /// Get or set the default owner of the MessageBoxWindow
+        /// </summary>
+        public static Window GlobalParentWindow { get; set; }
+
         /// <summary>
         /// Get or set the text of the buttons
         /// The default value is in English. If you want other language, you should specify them manully
@@ -40,6 +46,7 @@ namespace ModernMessageBoxLib
         /// <summary>
         /// Create and show a Modern Messagebox
         /// </summary>
+        /// <param name="parentWindow">the owner of the messagebox window</param>
         /// <param name="msg">Message</param>
         /// <param name="title">Title</param>
         /// <param name="btns">
@@ -49,12 +56,15 @@ namespace ModernMessageBoxLib
         /// The icon to show
         /// </param>
         /// <param name="playSound">play the system sound when the messageBox show</param>
-        public static ModernMessageboxResult Show(string msg, string title, QModernMessageBoxButtons btns,
-                                                 ModernMessageboxIcons icon = ModernMessageboxIcons.None,bool playSound = true)
+        public static ModernMessageboxResult Show(Window parentWindow, string msg, string title,
+                                                  QModernMessageBoxButtons btns,
+                                                  ModernMessageboxIcons icon = ModernMessageboxIcons.None,
+                                                  bool playSound = true)
         {
             var msgBox = new ModernMessageBox(msg, title, icon) {
                 Background = GlobalBackground,
                 Foreground = GlobalForeground,
+                Owner = parentWindow,
             };
             switch (btns) {
                 case QModernMessageBoxButtons.Ok:
@@ -106,12 +116,38 @@ namespace ModernMessageBoxLib
         }
 
         /// <summary>
+        /// Create and show a Modern Messagebox
+        /// </summary>
+        /// <param name="msg">Message</param>
+        /// <param name="title">Title</param>
+        /// <param name="btns">
+        /// The bottons to show
+        /// </param>
+        /// <param name="icon">
+        /// The icon to show
+        /// </param>
+        /// <param name="playSound">play the system sound when the messageBox show</param>
+        public static ModernMessageboxResult Show(string msg, string title, QModernMessageBoxButtons btns,
+                                                  ModernMessageboxIcons icon = ModernMessageboxIcons.None,
+                                                  bool playSound = true) => Show(GlobalParentWindow, msg, title, btns, icon,
+            playSound);
+
+        /// <summary>
         /// Create and show a metro messagebox with a warning sign and a "OK" button
         /// </summary>
         /// <param name="msg">Message</param>
         /// <param name="title">Title</param>
         public static void Warning(string msg, string title) =>
             Show(msg, title, QModernMessageBoxButtons.Ok, ModernMessageboxIcons.Warning);
+
+        /// <summary>
+        /// Create and show a metro messagebox with a warning sign and a "OK" button
+        /// </summary>
+        /// <param name="parentWindow">the owner of the messagebox window</param>
+        /// <param name="msg">Message</param>
+        /// <param name="title">Title</param>
+        public static void Warning(Window parentWindow, string msg, string title) =>
+            Show(parentWindow, msg, title, QModernMessageBoxButtons.Ok, ModernMessageboxIcons.Warning);
 
         /// <summary>
         /// Create and show a metro messagebox with an infomation sign and a "OK" button
@@ -122,12 +158,30 @@ namespace ModernMessageBoxLib
             Show(msg, title, QModernMessageBoxButtons.Ok, ModernMessageboxIcons.Info);
 
         /// <summary>
+        /// Create and show a metro messagebox with an infomation sign and a "OK" button
+        /// </summary>
+        /// <param name="parentWindow">the owner of the messagebox window</param>
+        /// <param name="msg">Message</param>
+        /// <param name="title">Title</param>
+        public static void Info(Window parentWindow, string msg, string title) =>
+            Show(parentWindow, msg, title, QModernMessageBoxButtons.Ok, ModernMessageboxIcons.Info);
+
+        /// <summary>
         /// Create and show a metro messagebox with an error sign and a "OK" button
         /// </summary>
         /// <param name="msg">Message</param>
         /// <param name="title">Title</param>
         public static void Error(string msg, string title) =>
             Show(msg, title, QModernMessageBoxButtons.Ok, ModernMessageboxIcons.Error);
+
+        /// <summary>
+        /// Create and show a metro messagebox with an error sign and a "OK" button
+        /// </summary>
+        /// <param name="parentWindow">the owner of the messagebox window</param>
+        /// <param name="msg">Message</param>
+        /// <param name="title">Title</param>
+        public static void Error(Window parentWindow,string msg, string title) =>
+            Show(parentWindow,msg, title, QModernMessageBoxButtons.Ok, ModernMessageboxIcons.Error);
 
         /// <summary>
         /// Create and show a metro messagebox with a question sign and a "OK" button
@@ -138,11 +192,29 @@ namespace ModernMessageBoxLib
             Show(msg, title, QModernMessageBoxButtons.Ok, ModernMessageboxIcons.Question);
 
         /// <summary>
+        /// Create and show a metro messagebox with a question sign and a "OK" button
+        /// </summary>
+        /// <param name="parentWindow">the owner of the messagebox window</param>
+        /// <param name="msg">Message</param>
+        /// <param name="title">Title</param>
+        public static void Question(Window parentWindow, string msg, string title) =>
+            Show(parentWindow, msg, title, QModernMessageBoxButtons.Ok, ModernMessageboxIcons.Question);
+
+        /// <summary>
         /// Create and show a metro messagebox with a "OK" button
         /// </summary>
         /// <param name="msg">Message</param>
         /// <param name="title">Title</param>
         public static void None(string msg, string title) => Show(msg, title, QModernMessageBoxButtons.Ok);
+
+        /// <summary>
+        /// Create and show a metro messagebox with a "OK" button
+        /// </summary>
+        /// <param name="parentWindow">the owner of the messagebox window</param>
+        /// <param name="msg">Message</param>
+        /// <param name="title">Title</param>
+        public static void None(Window parentWindow, string msg, string title) =>
+            Show(parentWindow, msg, title, QModernMessageBoxButtons.Ok);
 
         /// <summary>
         /// Create and show a metro messagebox with a done sign and a "OK" button
@@ -151,6 +223,15 @@ namespace ModernMessageBoxLib
         /// <param name="title">Title</param>
         public static void Done(string msg, string title) =>
             Show(msg, title, QModernMessageBoxButtons.Ok, ModernMessageboxIcons.Done);
+
+        /// <summary>
+        /// Create and show a metro messagebox with a done sign and a "OK" button
+        /// </summary>
+        /// <param name="parentWindow">the owner of the messagebox window</param>
+        /// <param name="msg">Message</param>
+        /// <param name="title">Title</param>
+        public static void Done(Window parentWindow, string msg, string title) =>
+            Show(parentWindow, msg, title, QModernMessageBoxButtons.Ok, ModernMessageboxIcons.Done);
 
         /// <summary>
         /// Define the buttons on the QModernMessageBox

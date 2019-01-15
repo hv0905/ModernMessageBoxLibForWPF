@@ -13,6 +13,8 @@ namespace DemoProj
     /// </summary>
     public partial class MainWindow : Window
     {
+        private bool _secondTheme = false;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -25,8 +27,9 @@ namespace DemoProj
                 Yes = "是(Y)",
                 Retry = "重试(R)"
             };
-            QModernMessageBox.GlobalBackground = new SolidColorBrush(Colors.White){Opacity = 0.6};
-            QModernMessageBox.GlobalForeground = Brushes.Black;
+            IndeterminateProgressWindow.GlobalBackground = QModernMessageBox.GlobalBackground = new SolidColorBrush(Colors.White){Opacity = 0.6};
+            IndeterminateProgressWindow.GlobalForeground = QModernMessageBox.GlobalForeground = Brushes.Black;
+            
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
@@ -56,8 +59,15 @@ namespace DemoProj
 
         private void ButtonBase_OnClick_2(object sender, RoutedEventArgs e)
         {
-            System.Windows.Forms.MessageBox.Show("fdsfdsfsdf", "dfdsfsdfsd", MessageBoxButtons.AbortRetryIgnore,
-                MessageBoxIcon.Error);
+            _secondTheme = !_secondTheme;
+            if (_secondTheme) {
+                IndeterminateProgressWindow.GlobalBackground = QModernMessageBox.GlobalBackground = new SolidColorBrush(Colors.Black) { Opacity = 0.6 };
+                IndeterminateProgressWindow.GlobalForeground = QModernMessageBox.GlobalForeground = Brushes.White;
+            }
+            else {
+                IndeterminateProgressWindow.GlobalBackground = QModernMessageBox.GlobalBackground = new SolidColorBrush(Colors.White) { Opacity = 0.6 };
+                IndeterminateProgressWindow.GlobalForeground = QModernMessageBox.GlobalForeground = Brushes.Black;
+            }
         }
 
         private async void ButtonBase_OnClick_3(object sender, RoutedEventArgs e)

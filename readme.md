@@ -13,6 +13,7 @@ By using ModernMessageBoxLib, you can create a ModernMessageBox with a single co
  - [x] Input Window
  - [x] Waiting window
  - [ ] Color Picker
+ - [ ] avater crop window
 
 ## Screenshots
 ### ModernMessageBox

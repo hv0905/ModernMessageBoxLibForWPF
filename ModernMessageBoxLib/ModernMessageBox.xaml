@@ -48,12 +48,14 @@
                 <Button x:Name="rbtn3" DockPanel.Dock="Right" Margin="5,2,5,2" Style="{StaticResource Win8UWPBtn}"
                         MinWidth="100" FontSize="16" Click="ResultButton_Click"
                         Content="{Binding Button3Text, ElementName=main}"
+                        Background="{Binding Background, ElementName=main,Converter={StaticResource colorOpticityConverter}}"
                         Foreground="{Binding Foreground, ElementName=main}"
                         Visibility="{Binding Button3Status, ElementName=main,Converter={StaticResource modernMessageboxButtonStatusConverter}}"
                         IsEnabled="{Binding Button3Status, ElementName=main,Converter={StaticResource modernMessageboxButtonStatusConverter}}" />
                 <Button x:Name="rbtn2" DockPanel.Dock="Right" Margin="5,2,5,2"
                         Style="{StaticResource Win8UWPBtn}" FontSize="16" Click="ResultButton_Click"
                         Content="{Binding Button2Text, ElementName=main}" MinWidth="100"
+                        Background="{Binding Background, ElementName=main,Converter={StaticResource colorOpticityConverter}}"
                         Foreground="{Binding Foreground, ElementName=main}"
                         Visibility="{Binding Button2Status, ElementName=main,Converter={StaticResource modernMessageboxButtonStatusConverter}}"
                         IsEnabled="{Binding Button2Status, ElementName=main,Converter={StaticResource modernMessageboxButtonStatusConverter}}" />

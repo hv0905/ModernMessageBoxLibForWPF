@@ -4,6 +4,7 @@ By using ModernMessageBoxLib, you can create a ModernMessageBox with a single co
 
 [![NuGet](https://img.shields.io/nuget/v/ModernMessageBoxLib.svg)](https://www.nuget.org/packages/ModernMessageBoxLib/)
 [![NuGet](https://img.shields.io/nuget/dt/ModernMessageBoxLib.svg)](https://www.nuget.org/packages/ModernMessageBoxLib/)
+[![Build Status](https://img.shields.io/azure-devops/build/SakuraTrak/53d5644c-3aeb-4940-9018-b587a6c7dba1/1.svg?style=flat-square&logo=azure-devops)](https://dev.azure.com/sakuratrak/ModernMessageBoxLibForWPF)
 [![by](https://img.shields.io/badge/By-SakuraTrak%20Studio-blue.svg)](https://www.nuget.org/packages/ModernMessageBoxLib/)
 
 ## Todo list
@@ -12,6 +13,7 @@ By using ModernMessageBoxLib, you can create a ModernMessageBox with a single co
  - [x] Input Window
  - [x] Waiting window
  - [ ] Color Picker
+ - [ ] avater crop window
 
 ## Screenshots
 ### ModernMessageBox

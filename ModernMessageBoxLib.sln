@@ -1,11 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2042
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModernMessageBoxLib", "ModernMessageBoxLib\ModernMessageBoxLib.csproj", "{BA88D9E1-3978-4092-AE72-9A82BAF65F15}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoProj", "DemoProj\DemoProj.csproj", "{7F7B8E94-9401-422E-8B2C-CD0B0975B794}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModernMessageBoxLib.core", "ModernMessageBoxLib\ModernMessageBoxLib.core.csproj", "{42F3993B-F3E0-46F6-A71E-2AE9A52242C6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoProj.Core", "DemoProj\DemoProj.Core.csproj", "{3C5A124F-581D-4F4E-8158-1BCC39D89C6F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NetCore", "NetCore", "{3BA362F1-E786-4607-B787-353B51DC75FC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NetFramework", "NetFramework", "{6B21BCD0-0AFE-4120-AABE-A496B69E6107}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +29,23 @@ Global
 		{7F7B8E94-9401-422E-8B2C-CD0B0975B794}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F7B8E94-9401-422E-8B2C-CD0B0975B794}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F7B8E94-9401-422E-8B2C-CD0B0975B794}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42F3993B-F3E0-46F6-A71E-2AE9A52242C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42F3993B-F3E0-46F6-A71E-2AE9A52242C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42F3993B-F3E0-46F6-A71E-2AE9A52242C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42F3993B-F3E0-46F6-A71E-2AE9A52242C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C5A124F-581D-4F4E-8158-1BCC39D89C6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C5A124F-581D-4F4E-8158-1BCC39D89C6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C5A124F-581D-4F4E-8158-1BCC39D89C6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C5A124F-581D-4F4E-8158-1BCC39D89C6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BA88D9E1-3978-4092-AE72-9A82BAF65F15} = {6B21BCD0-0AFE-4120-AABE-A496B69E6107}
+		{7F7B8E94-9401-422E-8B2C-CD0B0975B794} = {6B21BCD0-0AFE-4120-AABE-A496B69E6107}
+		{42F3993B-F3E0-46F6-A71E-2AE9A52242C6} = {3BA362F1-E786-4607-B787-353B51DC75FC}
+		{3C5A124F-581D-4F4E-8158-1BCC39D89C6F} = {3BA362F1-E786-4607-B787-353B51DC75FC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0183B76F-7A7D-46F9-9A10-ED3615F223D3}

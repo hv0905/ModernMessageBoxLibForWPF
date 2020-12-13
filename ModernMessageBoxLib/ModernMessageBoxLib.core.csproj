@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
     <RootNamespace>ModernMessageBoxLib</RootNamespace>
-    <AssemblyName>ModernMessageBoxLib</AssemblyName>
+    <AssemblyName>ModernMessageBoxLib.Core</AssemblyName>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
